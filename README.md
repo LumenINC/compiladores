@@ -1,1 +1,1 @@
-# projeto de materia de compiladores
+# projeto de compiladores
