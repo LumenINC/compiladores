@@ -1,42 +1,63 @@
 // src/lexer.js
 // ========================================
-// Analisador Léxico (Scanner) em JavaScript
+// Analisador Léxico (Scanner) Aprimorado
 // ========================================
 
 const tokenSpecs = [
-    ['WHITESPACE', /^\s+/, null],
-    ['NUMBER', /^\d+/],
-    ['IDENTIFIER', /^[a-zA-Z_]\w*/],
-    ['KEYWORD', /^(let|var|const|if|else|for|while|function|return)\b/],
-    ['OPERATOR', /^[+\-*/=<>!&|]+/],
-    ['DELIMITER', /^[(){};,]/],
-    ['STRING', /^"[^"]*"|^'[^']*'/],
-  ];
-  
-  function lexer(input) {
-    let tokens = [];
-    let code = input;
-  
-    while (code.length > 0) {
-      let match = null;
-      for (let [type, regex, ignore] of tokenSpecs) {
-        match = regex.exec(code);
-        if (match) {
-          if (!ignore) {
-            tokens.push({ type, value: match[0] });
-          }
-          code = code.slice(match[0].length);
-          break;
+  // Ignoráveis
+  ['WHITESPACE', /^\s+/, true],
+  ['COMMENT', /^\/\/.*/, true],
+
+  // Literais
+  ['NUMBER', /^\d+/],
+  ['STRING', /^"[^"]*"|^'[^']*'/],
+
+  // Identificadores e Palavras-chave
+  ['KEYWORD', /^(let|var|const|if|else|for|while|function|return|do)\b/],
+  ['IDENTIFIER', /^[a-zA-Z_]\w*/],
+
+  // Operadores
+  ['OPERATOR', /^(==|!=|<=|>=|&&|\|\||[+\-*/=<>!&|])/],
+
+  // Delimitadores
+  ['DELIMITER', /^[(){};,]/],
+];
+
+function lexer(input) {
+  let tokens = [];
+  let code = input;
+  let line = 1;
+  let column = 1;
+
+  while (code.length > 0) {
+    let match = null;
+    for (let [type, regex, ignore] of tokenSpecs) {
+      match = regex.exec(code);
+      if (match) {
+        const value = match[0];
+        if (!ignore) {
+          tokens.push({ type, value, line, column });
         }
-      }
-      if (!match) {
-        throw new Error(`Token inválido próximo de: ${code.slice(0, 20)}`);
+
+        // Atualiza linha e coluna
+        const lines = value.split('\n');
+        if (lines.length > 1) {
+          line += lines.length - 1;
+          column = lines[lines.length - 1].length + 1;
+        } else {
+          column += value.length;
+        }
+        
+        code = code.slice(value.length);
+        break;
       }
     }
-  
-    return tokens;
+    if (!match) {
+      throw new Error(`LexerError: Token inválido na linha ${line}, coluna ${column} próximo de: ${code.slice(0, 20)}`);
+    }
   }
-  
-  // Exporta para uso em main.js
-  module.exports = { lexer };
-  
+
+  return tokens;
+}
+
+module.exports = { lexer };

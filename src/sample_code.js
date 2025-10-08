@@ -1,10 +1,14 @@
-let x = 10;
-let y = 20;
+// src/sample_code.js
 
-function main() {
-  if (x < y) {
-    x = x + 1;
-  } else {
-    x = x - 1;
-  }
+let x = 10;
+let y = (5 + 5) * 2; // Expressão complexa com parênteses
+
+// Laço 'for' para iterar
+for (let i = 0; i < 5; i = i + 1) {
+    x = x + i;
+}
+
+// Laço 'while' simples
+while (y > 15) {
+    y = y - 1;
 }
