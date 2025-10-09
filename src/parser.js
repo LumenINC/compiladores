@@ -1,189 +1,222 @@
 // src/parser.js
-// ========================================
-// Analisador Sintático (Parser) - VERSÃO FINAL E CORRIGIDA
-// ========================================
+const fs = require('fs');
+const path = require('path');
+const { tokenize } = require('./lexer');
 
+// Parser com suporte a múltiplas instruções, blocos e estruturas de controle
 class Parser {
-  constructor(tokens) {
-    this.tokens = tokens;
-    this.position = 0;
-  }
-
-  // Retorna o token atual sem consumi-lo
-  currentToken() {
-    return this.tokens[this.position];
-  }
-
-  // Avança para o próximo token
-  advance() {
-    this.position++;
-  }
-
-  // Valida e consome o token esperado
-  expect(type, value) {
-    const token = this.currentToken();
-    if (!token || token.type !== type || (value && token.value !== value)) {
-      const found = token ? `(tipo: ${token.type}, valor: '${token.value}') na linha ${token.line}, coluna ${token.column}` : 'fim de arquivo';
-      throw new Error(`SyntaxError: Esperado ${type} ${value || ''}, mas encontrado ${found}.`);
+    constructor(tokens) {
+        this.tokens = tokens;
+        this.current = 0;
     }
-    this.advance();
-    return token;
-  }
 
-  // Ponto de entrada para a análise
-  parse() {
-    const body = [];
-    while (this.position < this.tokens.length) {
-      body.push(this.parseStatement());
-    }
-    return { type: 'Program', body };
-  }
-  
-  // Analisa uma declaração
-  parseStatement() {
-    const token = this.currentToken();
-    switch (token.value){
-        case 'let': case 'const': case 'var': return this.parseVariableDeclaration();
-        case 'if': return this.parseIfStatement();
-        case 'while': return this.parseWhileStatement();
-        case 'for': return this.parseForStatement();
-        default: return this.parseExpression();
-    }
-  }
-
-  parseVariableDeclaration() {
-    this.advance(); // consome 'let', 'const' ou 'var'
-    const id = this.expect('IDENTIFIER');
-    this.expect('OPERATOR', '=');
-    const init = this.parseExpression();
-    this.expect('DELIMITER', ';');
-    return { type: 'VariableDeclaration', identifier: id.value, value: init };
-  }
-
-  parseIfStatement() {
-    this.advance(); // consome 'if'
-    this.expect('DELIMITER', '(');
-    const test = this.parseExpression();
-    this.expect('DELIMITER', ')');
-    const consequent = this.parseBlockStatement();
-    let alternate = null;
-    if (this.currentToken() && this.currentToken().value === 'else') {
-      this.advance(); // consome 'else'
-      alternate = this.parseBlockStatement();
-    }
-    return { type: 'IfStatement', test, consequent, alternate };
-  }
-
-  parseWhileStatement() {
-    this.advance(); // consome 'while'
-    this.expect('DELIMITER', '(');
-    const test = this.parseExpression();
-    this.expect('DELIMITER', ')');
-    const body = this.parseBlockStatement();
-    return { type: 'WhileStatement', test, body };
-  }
-
-  parseForStatement() {
-      this.advance(); // consome 'for'
-      this.expect('DELIMITER', '(');
-
-      let init = null;
-      if (this.currentToken().value !== ';') {
-          init = this.parseVariableDeclaration();
-      } else {
-          this.expect('DELIMITER', ';');
-      }
-
-      let test = null;
-      if (this.currentToken().value !== ';') {
-          test = this.parseExpression();
-      }
-      this.expect('DELIMITER', ';');
-
-      let update = null;
-      if (this.currentToken().value !== ')') {
-          update = this.parseExpression();
-      }
-      this.expect('DELIMITER', ')');
-      
-      const body = this.parseBlockStatement();
-      return { type: 'ForStatement', init, test, update, body };
-  }
-  
-  parseBlockStatement() {
-    this.expect('DELIMITER', '{');
-    const body = [];
-    while (this.currentToken() && this.currentToken().value !== '}') {
-      body.push(this.parseStatement());
-    }
-    this.expect('DELIMITER', '}');
-    return { type: 'BlockStatement', body };
-  }
-  
-  parseExpressionStatement() {
-    const expression = this.parseExpression();
-    this.expect('DELIMITER', ';');
-    return { type: 'ExpressionStatement', expression };
-  }
-
-  // --- Análise de Expressão com Precedência de Operador (Pratt Parser) ---
-
-  getPrecedence(token) {
-    if (token.type !== 'OPERATOR') return 0;
-    switch (token.value) {
-      case '*': case '/': return 2;
-      case '+': case '-': return 1;
-      case '<': case '>': case '==': return 0;
-      default: return 0;
-    }
-  }
-
-  parseExpression(precedence = 0) {
-    let left = this.parsePrimaryExpression();
-
-    while (this.position < this.tokens.length) {
-      const operatorToken = this.currentToken();
-      if (!operatorToken || this.getPrecedence(operatorToken) < precedence) {
-        break;
-      }
-      
-      this.advance();
-      const right = this.parseExpression(this.getPrecedence(operatorToken) + 1);
-      left = { type: 'BinaryExpression', operator: operatorToken.value, left, right };
-    }
-    return left;
-  }
-  
-  parsePrimaryExpression() {
-    const token = this.currentToken();
-
-    switch (token.type) {
-      case 'NUMBER':
-        this.advance(); // Consome o token AQUI
-        return { type: 'NumericLiteral', value: Number(token.value) };
-      
-      case 'IDENTIFIER':
-        this.advance(); // Consome o token AQUI
-        if (this.currentToken() && this.currentToken().type === 'OPERATOR' && this.currentToken().value === '=') {
-          this.advance();
-          const right = this.parseExpression();
-          return { type: 'AssignmentExpression', left: { type: 'Identifier', name: token.value }, right };
+    parse() {
+        const body = [];
+        while (!this.isAtEnd()) {
+            const stmt = this.parseStatement();
+            if (stmt) body.push(stmt);
+            else this.advance(); // evita loop infinito em caso de erro
         }
-        return { type: 'Identifier', name: token.value };
-
-      case 'DELIMITER':
-        if (token.value === '(') {
-          this.advance(); // Consome o '(' AQUI
-          const expression = this.parseExpression();
-          this.expect('DELIMITER', ')');
-          return expression;
-        }
-      
-      default:
-        throw new Error(`SyntaxError: Expressão primária inesperada na linha ${token.line}, coluna ${token.column}. Token: '${token.value}'`);
+        return { type: "Program", body };
     }
-  }
 
-} // <--- Chave de fechamento da classe
+    parseStatement() {
+        if (this.match('KEYWORD', 'let')) return this.parseVariableDeclaration();
+        if (this.match('KEYWORD', 'for')) return this.parseForStatement();
+        if (this.match('KEYWORD', 'while')) return this.parseWhileStatement();
+        if (this.check('DELIMITER', '{')) return this.parseBlock();
+        return this.parseExpressionStatement();
+    }
+
+    parseBlock() {
+        this.consume('DELIMITER', '{');
+        const body = [];
+        while (!this.check('DELIMITER', '}') && !this.isAtEnd()) {
+            body.push(this.parseStatement());
+        }
+        this.consume('DELIMITER', '}');
+        return { type: "BlockStatement", body };
+    }
+
+    parseVariableDeclaration() {
+        const name = this.consume('IDENTIFIER', null, 'Esperado nome de variável após "let"').value;
+        this.consume('OPERATOR', '=', 'Esperado "=" após nome de variável');
+        const initializer = this.parseExpression();
+        this.consume('DELIMITER', ';', 'Esperado ";" após declaração de variável');
+        return { type: "VariableDeclaration", name, initializer };
+    }
+
+    parseExpressionStatement() {
+        const expr = this.parseExpression();
+        this.consume('DELIMITER', ';', 'Esperado ";" após expressão');
+        return { type: "ExpressionStatement", expression: expr };
+    }
+
+    parseExpression() {
+      return this.parseAssignment();
+    }
+
+
+    parseAssignment() {
+        let expr = this.parseEquality();
+
+        if (this.match('OPERATOR', '=')) {
+            const operator = this.previous().value;
+            const right = this.parseAssignment(); // recursivo: suporta encadeamento a = b = 3
+            if (expr.type !== 'Identifier') {
+                throw new SyntaxError(`Atribuição inválida na linha ${this.peek().line}, coluna ${this.peek().column}`);
+            }
+            expr = {
+                type: 'AssignmentExpression',
+                operator,
+                left: expr,
+                right
+            };
+        }
+
+        return expr;
+    }
+    parseEquality() {
+        let expr = this.parseComparison();
+        while (this.match('OPERATOR', '==') || this.match('OPERATOR', '!=')) {
+            const operator = this.previous().value;
+            const right = this.parseComparison();
+            expr = { type: "BinaryExpression", operator, left: expr, right };
+        }
+        return expr;
+    }
+
+    parseComparison() {
+        let expr = this.parseTerm();
+        while (this.match('OPERATOR', '<') || this.match('OPERATOR', '>') ||
+               this.match('OPERATOR', '<=') || this.match('OPERATOR', '>=')) {
+            const operator = this.previous().value;
+            const right = this.parseTerm();
+            expr = { type: "BinaryExpression", operator, left: expr, right };
+        }
+        return expr;
+    }
+
+    parseTerm() {
+        let expr = this.parseFactor();
+        while (this.match('OPERATOR', '+') || this.match('OPERATOR', '-')) {
+            const operator = this.previous().value;
+            const right = this.parseFactor();
+            expr = { type: "BinaryExpression", operator, left: expr, right };
+        }
+        return expr;
+    }
+
+    parseFactor() {
+        let expr = this.parseUnary();
+        while (this.match('OPERATOR', '*') || this.match('OPERATOR', '/')) {
+            const operator = this.previous().value;
+            const right = this.parseUnary();
+            expr = { type: "BinaryExpression", operator, left: expr, right };
+        }
+        return expr;
+    }
+
+    parseUnary() {
+        if (this.match('OPERATOR', '-') || this.match('OPERATOR', '+')) {
+            const operator = this.previous().value;
+            const right = this.parseUnary();
+            return { type: "UnaryExpression", operator, right };
+        }
+        return this.parsePrimary();
+    }
+
+    parsePrimary() {
+        if (this.match('NUMBER')) return { type: "Literal", value: Number(this.previous().value) };
+        if (this.match('IDENTIFIER')) return { type: "Identifier", name: this.previous().value };
+        if (this.match('DELIMITER', '(')) {
+            const expr = this.parseExpression();
+            this.consume('DELIMITER', ')', 'Esperado ")" após expressão');
+            return expr;
+        }
+        throw new SyntaxError(`Expressão primária inesperada na linha ${this.peek().line}, coluna ${this.peek().column}. Token: '${this.peek().value}'`);
+    }
+
+    parseForStatement() {
+        this.consume('DELIMITER', '(');
+        this.consume('KEYWORD', 'let');
+        const iterator = this.consume('IDENTIFIER').value;
+        this.consume('OPERATOR', '=');
+        const start = this.parseExpression();
+        this.consume('DELIMITER', ';');
+        const condition = this.parseExpression();
+        this.consume('DELIMITER', ';');
+        const updateLeft = this.consume('IDENTIFIER').value;
+        this.consume('OPERATOR', '=');
+        const updateRight = this.parseExpression();
+        this.consume('DELIMITER', ')');
+        const body = this.parseBlock();
+        return {
+            type: "ForStatement",
+            iterator,
+            start,
+            condition,
+            update: { left: updateLeft, right: updateRight },
+            body
+        };
+    }
+
+    parseWhileStatement() {
+        this.consume('DELIMITER', '(');
+        const condition = this.parseExpression();
+        this.consume('DELIMITER', ')');
+        const body = this.parseBlock();
+        return { type: "WhileStatement", condition, body };
+    }
+
+    // utilitários
+    match(type, value = null) {
+        if (this.check(type, value)) {
+            this.advance();
+            return true;
+        }
+        return false;
+    }
+
+    consume(type, value = null, message = null) {
+        if (this.check(type, value)) return this.advance();
+        const token = this.peek();
+        throw new SyntaxError(message || `Esperado ${value || type} na linha ${token.line}, coluna ${token.column}`);
+    }
+
+    check(type, value = null) {
+        if (this.isAtEnd()) return false;
+        const token = this.peek();
+        if (token.type !== type) return false;
+        if (value && token.value !== value) return false;
+        return true;
+    }
+
+    advance() {
+        if (!this.isAtEnd()) this.current++;
+        return this.previous();
+    }
+
+    isAtEnd() {
+        return this.current >= this.tokens.length;
+    }
+
+    peek() {
+        return this.tokens[this.current];
+    }
+
+    previous() {
+        return this.tokens[this.current - 1];
+    }
+}
+
+if (require.main === module) {
+    const filePath = path.join(__dirname, 'sample_code.js');
+    const source = fs.readFileSync(filePath, 'utf-8');
+    const tokens = tokenize(source);
+    const parser = new Parser(tokens);
+    const ast = parser.parse();
+    console.log(JSON.stringify(ast, null, 2));
+}
 
 module.exports = { Parser };
