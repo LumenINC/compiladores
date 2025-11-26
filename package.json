@@ -1,0 +1,16 @@
+{
+  "name": "projeto-analisador",
+  "version": "1.0.0",
+  "description": "Analisador léxico e sintático em JavaScript",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node tests/runTests.js",
+    "lexer": "node src/lexer.js",
+    "parser": "node src/parser.js"
+  },
+  "keywords": ["compiler", "lexer", "parser", "javascript", "academic"],
+  "author": "Cássio Lima Cavalcante",
+  "license": "MIT"
+}

@@ -1,0 +1,18 @@
+# Ignorar dependências instaladas via npm
+node_modules/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ambiente de desenvolvimento
+.env
+.vscode/
+
+# Arquivos de saída e caches
+dist/
+coverage/
