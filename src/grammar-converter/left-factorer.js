@@ -1,72 +1,63 @@
-// src/grammar-converter/left-factorer.js
-
-function findLongestCommonPrefix(productions) {
-  if (!productions || productions.length === 0) {
-    return [];
-  }
-
-  const shortestProd = productions.reduce((a, b) => (a.length < b.length ? a : b));
-  let commonPrefix = [];
-
-  for (let i = 0; i < shortestProd.length; i++) {
-    const symbol = shortestProd[i];
-    if (productions.every(p => p[i] === symbol)) {
-      commonPrefix.push(symbol);
-    } else {
-      break;
-    }
-  }
-
-  return commonPrefix;
-}
+// left-factorer.js
+// Aplica fatoração à esquerda completa
 
 function leftFactor(grammar) {
-  let newGrammar = { ...grammar };
   let changed = true;
 
   while (changed) {
     changed = false;
-    const nonTerminals = Object.keys(newGrammar);
 
-    for (const nt of nonTerminals) {
-      const productions = newGrammar[nt];
+    for (const A of Object.keys(grammar)) {
+      const prods = grammar[A];
       const groups = {};
 
-      for (const prod of productions) {
-        if (prod.length > 0 && prod[0] !== 'ε') {
-          const firstSymbol = prod[0];
-          if (!groups[firstSymbol]) {
-            groups[firstSymbol] = [];
-          }
-          groups[firstSymbol].push(prod);
-        }
+      for (const prod of prods) {
+        const key = prod[0];
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(prod);
       }
 
-      for (const firstSymbol in groups) {
-        const group = groups[firstSymbol];
-        if (group.length > 1) {
-          changed = true;
-          const newNonTerminal = nt + "'";
+      for (const key in groups) {
+        const group = groups[key];
+        if (group.length < 2) continue;
 
-          const commonPrefix = findLongestCommonPrefix(group);
+        const prefix = longestPrefix(group);
+        if (prefix.length < 1) continue;
 
-          const newProductions = group.map(prod => {
-            const suffix = prod.slice(commonPrefix.length);
-            return suffix.length > 0 ? suffix : ['ε'];
-          });
+        changed = true;
 
-          const remainingProductions = productions.filter(p => !group.includes(p));
-          newGrammar[nt] = [...remainingProductions, [...commonPrefix, newNonTerminal]];
-          newGrammar[newNonTerminal] = newProductions;
+        const A2 = A + "'";
 
-          break; // Restart since grammar changed
-        }
+        grammar[A] = [
+          ...prods.filter(p => !group.includes(p)),
+          [...prefix, A2]
+        ];
+
+        grammar[A2] = group.map(prod => {
+          const rest = prod.slice(prefix.length);
+          return rest.length ? rest : ["ε"];
+        });
+
+        break;
       }
-      if (changed) break;
     }
   }
 
-  return newGrammar;
+  return grammar;
+}
+
+function longestPrefix(list) {
+  let prefix = [...list[0]];
+
+  for (const prod of list.slice(1)) {
+    let i = 0;
+    while (i < prefix.length && i < prod.length && prefix[i] === prod[i]) {
+      i++;
+    }
+    prefix = prefix.slice(0, i);
+  }
+
+  return prefix;
 }
 
 module.exports = { leftFactor };

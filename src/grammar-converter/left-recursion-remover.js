@@ -1,30 +1,42 @@
 function removeLeftRecursion(grammar) {
+  const nonTerminals = Object.keys(grammar);
   const newGrammar = {};
 
-  for (const nonTerminal in grammar) {
-    const productions = grammar[nonTerminal];
-    const recursiveProductions = [];
-    const nonRecursiveProductions = [];
+  for (let i = 0; i < nonTerminals.length; i++) {
+    const Ai = nonTerminals[i];
+    let prods = grammar[Ai];
 
-    let hasRecursion = false;
-    for (const production of productions) {
-      if (production[0] === nonTerminal) {
-        recursiveProductions.push(production.slice(1));
-        hasRecursion = true;
-      } else {
-        nonRecursiveProductions.push(production);
+    for (let j = 0; j < i; j++) {
+      const Aj = nonTerminals[j];
+      const replaced = [];
+
+      for (const prod of prods) {
+        if (prod[0] === Aj) {
+          for (const gamma of newGrammar[Aj]) {
+            replaced.push([...gamma, ...prod.slice(1)]);
+          }
+        } else {
+          replaced.push(prod);
+        }
       }
+
+      prods = replaced;
     }
 
-    if (hasRecursion) {
-      const newNonTerminal = nonTerminal + "'";
-      newGrammar[nonTerminal] = nonRecursiveProductions.map(prod => [...prod, newNonTerminal]);
+    const directRec = prods.filter(p => p[0] === Ai);
+    const nonRec   = prods.filter(p => p[0] !== Ai);
 
-      newGrammar[newNonTerminal] = recursiveProductions.map(prod => [...prod, newNonTerminal]);
-      newGrammar[newNonTerminal].push(['ε']);
-    } else {
-      newGrammar[nonTerminal] = productions;
+    if (directRec.length === 0) {
+      newGrammar[Ai] = prods;
+      continue;
     }
+
+    const AiPrime = Ai + "'";
+
+    newGrammar[Ai] = nonRec.map(p => [...p, AiPrime]);
+
+    newGrammar[AiPrime] = directRec.map(p => [...p.slice(1), AiPrime]);
+    newGrammar[AiPrime].push(["ε"]);
   }
 
   return newGrammar;
