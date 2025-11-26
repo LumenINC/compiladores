@@ -1,0 +1,47 @@
+# ================================
+#  GRAMÁTICA — VERSÃO ORIGINAL
+#  COM RECURSÃO À ESQUERDA
+# ================================
+
+Program      -> StmtList EOF
+
+StmtList     -> Stmt StmtList | ε
+
+Stmt         -> Decl
+              | Assign
+              | If
+              | While
+              | Print
+              | Block
+              | ;
+
+Decl         -> "var" id DeclTail
+DeclTail     -> "=" Expr ";" | ";"
+
+Assign       -> id "=" Expr ";"
+
+If           -> "if" "(" Expr ")" Stmt ElseOpt
+ElseOpt      -> "else" Stmt | ε
+
+While        -> "while" "(" Expr ")" Stmt
+
+Print        -> "print" "(" Expr ")" ";"
+
+Block        -> "{" StmtList "}"
+
+# EXPRESSÕES (COM RECURSÃO À ESQUERDA)
+
+Expr         -> Expr "+" Term
+              | Expr "-" Term
+              | Term
+
+Term         -> Term "*" Factor
+              | Term "/" Factor
+              | Factor
+
+Factor       -> "(" Expr ")"
+              | number
+              | id
+
+id           -> IDENTIFIER
+number       -> NUMBER
