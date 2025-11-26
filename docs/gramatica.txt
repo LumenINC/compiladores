@@ -1,47 +1,30 @@
-# ================================
-#  GRAMÁTICA — VERSÃO ORIGINAL
-#  COM RECURSÃO À ESQUERDA
-# ================================
+Program -> StmtList EOF
 
-Program      -> StmtList EOF
+StmtList -> Stmt StmtList | ε
 
-StmtList     -> Stmt StmtList | ε
+Stmt -> Decl | Assign | If | While | Print | Block
 
-Stmt         -> Decl
-              | Assign
-              | If
-              | While
-              | Print
-              | Block
-              | ;
+Decl -> "var" id DeclTail
+DeclTail -> "=" Expr ";" | ";"
 
-Decl         -> "var" id DeclTail
-DeclTail     -> "=" Expr ";" | ";"
+Assign -> id "=" Expr ";"
 
-Assign       -> id "=" Expr ";"
+If -> "if" "(" Expr ")" Stmt ElseOpt
+ElseOpt -> "else" Stmt | ε
 
-If           -> "if" "(" Expr ")" Stmt ElseOpt
-ElseOpt      -> "else" Stmt | ε
+While -> "while" "(" Expr ")" Stmt
 
-While        -> "while" "(" Expr ")" Stmt
+Print -> "print" "(" Expr ")" ";"
 
-Print        -> "print" "(" Expr ")" ";"
+Block -> "{" StmtList "}"
 
-Block        -> "{" StmtList "}"
+Expr -> Term ExprPrime
+ExprPrime -> "+" Term ExprPrime | ε
 
-# EXPRESSÕES (COM RECURSÃO À ESQUERDA)
+Term -> Factor TermPrime
+TermPrime -> "*" Factor TermPrime | ε
 
-Expr         -> Expr "+" Term
-              | Expr "-" Term
-              | Term
+Factor -> "(" Expr ")" | id | number
 
-Term         -> Term "*" Factor
-              | Term "/" Factor
-              | Factor
-
-Factor       -> "(" Expr ")"
-              | number
-              | id
-
-id           -> IDENTIFIER
-number       -> NUMBER
+id -> IDENTIFIER
+number -> NUMBER

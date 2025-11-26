@@ -107,14 +107,14 @@
     "Expr": [
       [
         "Term",
-        "Expr'"
+        "ExprPrime"
       ]
     ],
-    "Expr'": [
+    "ExprPrime": [
       [
         "+",
         "Term",
-        "Expr'"
+        "ExprPrime"
       ],
       [
         "ε"
@@ -123,14 +123,14 @@
     "Term": [
       [
         "Factor",
-        "Term'"
+        "TermPrime"
       ]
     ],
-    "Term'": [
+    "TermPrime": [
       [
         "*",
         "Factor",
-        "Term'"
+        "TermPrime"
       ],
       [
         "ε"
@@ -160,9 +160,54 @@
       ]
     ]
   },
+  "nonterminals": [
+    "Program",
+    "StmtList",
+    "Stmt",
+    "Decl",
+    "DeclTail",
+    "Assign",
+    "If",
+    "ElseOpt",
+    "While",
+    "Print",
+    "Block",
+    "Expr",
+    "ExprPrime",
+    "Term",
+    "TermPrime",
+    "Factor",
+    "id",
+    "number"
+  ],
+  "terminals": [
+    "EOF",
+    "var",
+    "=",
+    ";",
+    "if",
+    "(",
+    ")",
+    "else",
+    "while",
+    "print",
+    "{",
+    "}",
+    "+",
+    "*",
+    "IDENTIFIER",
+    "NUMBER",
+    "$"
+  ],
   "FIRST": {
     "Program": [
-      "EOF"
+      "EOF",
+      "var",
+      "if",
+      "while",
+      "print",
+      "{",
+      "IDENTIFIER"
     ],
     "StmtList": [
       "ε",
@@ -170,7 +215,8 @@
       "if",
       "while",
       "print",
-      "{"
+      "{",
+      "IDENTIFIER"
     ],
     "Stmt": [
       "var",
@@ -207,9 +253,11 @@
       "{"
     ],
     "Expr": [
-      "("
+      "(",
+      "IDENTIFIER",
+      "NUMBER"
     ],
-    "Expr'": [
+    "ExprPrime": [
       "+",
       "ε"
     ],
@@ -218,7 +266,7 @@
       "IDENTIFIER",
       "NUMBER"
     ],
-    "Term'": [
+    "TermPrime": [
       "*",
       "ε"
     ],
@@ -248,6 +296,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -258,6 +307,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -268,6 +318,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -278,6 +329,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -288,6 +340,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -298,6 +351,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -308,6 +362,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -318,6 +373,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -328,6 +384,7 @@
       "while",
       "print",
       "{",
+      "IDENTIFIER",
       "EOF",
       "else",
       "}"
@@ -336,7 +393,7 @@
       ";",
       ")"
     ],
-    "Expr'": [
+    "ExprPrime": [
       ";",
       ")"
     ],
@@ -345,7 +402,7 @@
       ";",
       ")"
     ],
-    "Term'": [
+    "TermPrime": [
       "+",
       ";",
       ")"
@@ -376,7 +433,6 @@
         "StmtList",
         "EOF"
       ],
-      "ε": null,
       "var": [
         "StmtList",
         "EOF"
@@ -405,18 +461,17 @@
       "}": null,
       "+": null,
       "*": null,
-      "IDENTIFIER": null,
-      "NUMBER": null,
-      "$": [
+      "IDENTIFIER": [
         "StmtList",
         "EOF"
-      ]
+      ],
+      "NUMBER": null,
+      "$": null
     },
     "StmtList": {
       "EOF": [
         "ε"
       ],
-      "ε": null,
       "var": [
         "Stmt",
         "StmtList"
@@ -456,7 +511,6 @@
     },
     "Stmt": {
       "EOF": null,
-      "ε": null,
       "var": [
         "Decl"
       ],
@@ -488,7 +542,6 @@
     },
     "Decl": {
       "EOF": null,
-      "ε": null,
       "var": [
         "var",
         "id",
@@ -512,7 +565,6 @@
     },
     "DeclTail": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": [
         "=",
@@ -538,7 +590,6 @@
     },
     "Assign": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -563,7 +614,6 @@
     },
     "If": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -592,7 +642,6 @@
       "EOF": [
         "ε"
       ],
-      "ε": null,
       "var": [
         "ε"
       ],
@@ -620,13 +669,14 @@
       ],
       "+": null,
       "*": null,
-      "IDENTIFIER": null,
+      "IDENTIFIER": [
+        "ε"
+      ],
       "NUMBER": null,
       "$": null
     },
     "While": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -652,7 +702,6 @@
     },
     "Print": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -678,7 +727,6 @@
     },
     "Block": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -702,14 +750,13 @@
     },
     "Expr": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
       "if": null,
       "(": [
         "Term",
-        "Expr'"
+        "ExprPrime"
       ],
       ")": null,
       "else": null,
@@ -721,17 +768,16 @@
       "*": null,
       "IDENTIFIER": [
         "Term",
-        "Expr'"
+        "ExprPrime"
       ],
       "NUMBER": [
         "Term",
-        "Expr'"
+        "ExprPrime"
       ],
       "$": null
     },
-    "Expr'": {
+    "ExprPrime": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": [
@@ -750,7 +796,7 @@
       "+": [
         "+",
         "Term",
-        "Expr'"
+        "ExprPrime"
       ],
       "*": null,
       "IDENTIFIER": null,
@@ -759,14 +805,13 @@
     },
     "Term": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
       "if": null,
       "(": [
         "Factor",
-        "Term'"
+        "TermPrime"
       ],
       ")": null,
       "else": null,
@@ -778,17 +823,16 @@
       "*": null,
       "IDENTIFIER": [
         "Factor",
-        "Term'"
+        "TermPrime"
       ],
       "NUMBER": [
         "Factor",
-        "Term'"
+        "TermPrime"
       ],
       "$": null
     },
-    "Term'": {
+    "TermPrime": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": [
@@ -810,7 +854,7 @@
       "*": [
         "*",
         "Factor",
-        "Term'"
+        "TermPrime"
       ],
       "IDENTIFIER": null,
       "NUMBER": null,
@@ -818,7 +862,6 @@
     },
     "Factor": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -846,7 +889,6 @@
     },
     "id": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
@@ -868,7 +910,6 @@
     },
     "number": {
       "EOF": null,
-      "ε": null,
       "var": null,
       "=": null,
       ";": null,
