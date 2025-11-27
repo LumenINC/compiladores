@@ -1,0 +1,1443 @@
+{
+  "action": {
+    "0": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22",
+      "EOF": "r3",
+      "}": "r3"
+    },
+    "1": {
+      "$": "accept"
+    },
+    "2": {
+      "EOF": "s23"
+    },
+    "3": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22",
+      "EOF": "r3",
+      "}": "r3"
+    },
+    "4": {
+      "ε": "r4",
+      "var": "r4",
+      "let": "r4",
+      "int": "r4",
+      "float": "r4",
+      "if": "r4",
+      "while": "r4",
+      "for": "r4",
+      "print": "r4",
+      "{": "r4",
+      "IDENTIFIER": "r4",
+      "else": "r4"
+    },
+    "5": {
+      "ε": "r5",
+      "var": "r5",
+      "let": "r5",
+      "int": "r5",
+      "float": "r5",
+      "if": "r5",
+      "while": "r5",
+      "for": "r5",
+      "print": "r5",
+      "{": "r5",
+      "IDENTIFIER": "r5",
+      "else": "r5"
+    },
+    "6": {
+      "ε": "r6",
+      "var": "r6",
+      "let": "r6",
+      "int": "r6",
+      "float": "r6",
+      "if": "r6",
+      "while": "r6",
+      "for": "r6",
+      "print": "r6",
+      "{": "r6",
+      "IDENTIFIER": "r6",
+      "else": "r6"
+    },
+    "7": {
+      "ε": "r7",
+      "var": "r7",
+      "let": "r7",
+      "int": "r7",
+      "float": "r7",
+      "if": "r7",
+      "while": "r7",
+      "for": "r7",
+      "print": "r7",
+      "{": "r7",
+      "IDENTIFIER": "r7",
+      "else": "r7"
+    },
+    "8": {
+      "ε": "r8",
+      "var": "r8",
+      "let": "r8",
+      "int": "r8",
+      "float": "r8",
+      "if": "r8",
+      "while": "r8",
+      "for": "r8",
+      "print": "r8",
+      "{": "r8",
+      "IDENTIFIER": "r8",
+      "else": "r8"
+    },
+    "9": {
+      "ε": "r9",
+      "var": "r9",
+      "let": "r9",
+      "int": "r9",
+      "float": "r9",
+      "if": "r9",
+      "while": "r9",
+      "for": "r9",
+      "print": "r9",
+      "{": "r9",
+      "IDENTIFIER": "r9",
+      "else": "r9"
+    },
+    "10": {
+      "ε": "r10",
+      "var": "r10",
+      "let": "r10",
+      "int": "r10",
+      "float": "r10",
+      "if": "r10",
+      "while": "r10",
+      "for": "r10",
+      "print": "r10",
+      "{": "r10",
+      "IDENTIFIER": "r10",
+      "else": "r10"
+    },
+    "11": {
+      "IDENTIFIER": "s22"
+    },
+    "12": {
+      "IDENTIFIER": "s22"
+    },
+    "13": {
+      "IDENTIFIER": "s22"
+    },
+    "14": {
+      "IDENTIFIER": "s22"
+    },
+    "15": {
+      ";": "s29"
+    },
+    "16": {
+      "(": "s30"
+    },
+    "17": {
+      "(": "s31"
+    },
+    "18": {
+      "(": "s32"
+    },
+    "19": {
+      "(": "s33"
+    },
+    "20": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22",
+      "EOF": "r3",
+      "}": "r3"
+    },
+    "21": {
+      "=": "s35"
+    },
+    "22": {
+      "=": "r45",
+      ";": "r45",
+      "*": "r45",
+      "/": "r45",
+      "ε": "r45"
+    },
+    "23": {
+      "$": "r1"
+    },
+    "24": {
+      "EOF": "r2",
+      "}": "r2"
+    },
+    "25": {
+      "=": "s37",
+      ";": "s38"
+    },
+    "26": {
+      "=": "s37",
+      ";": "s38"
+    },
+    "27": {
+      "=": "s37",
+      ";": "s38"
+    },
+    "28": {
+      "=": "s37",
+      ";": "s38"
+    },
+    "29": {
+      "ε": "r17",
+      "var": "r17",
+      "let": "r17",
+      "int": "r17",
+      "float": "r17",
+      "if": "r17",
+      "while": "r17",
+      "for": "r17",
+      "print": "r17",
+      "{": "r17",
+      "IDENTIFIER": "r17",
+      "else": "r17"
+    },
+    "30": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "31": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "32": {
+      "let": "s52",
+      "var": "s53",
+      "IDENTIFIER": "s22"
+    },
+    "33": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "34": {
+      "}": "s56"
+    },
+    "35": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "36": {
+      "ε": "r11",
+      "var": "r11",
+      "let": "r11",
+      "int": "r11",
+      "float": "r11",
+      "if": "r11",
+      "while": "r11",
+      "for": "r11",
+      "print": "r11",
+      "{": "r11",
+      "IDENTIFIER": "r11",
+      "else": "r11"
+    },
+    "37": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "38": {
+      "ε": "r16",
+      "var": "r16",
+      "let": "r16",
+      "int": "r16",
+      "float": "r16",
+      "if": "r16",
+      "while": "r16",
+      "for": "r16",
+      "print": "r16",
+      "{": "r16",
+      "IDENTIFIER": "r16",
+      "else": "r16"
+    },
+    "39": {
+      "ε": "r12",
+      "var": "r12",
+      "let": "r12",
+      "int": "r12",
+      "float": "r12",
+      "if": "r12",
+      "while": "r12",
+      "for": "r12",
+      "print": "r12",
+      "{": "r12",
+      "IDENTIFIER": "r12",
+      "else": "r12"
+    },
+    "40": {
+      "ε": "r13",
+      "var": "r13",
+      "let": "r13",
+      "int": "r13",
+      "float": "r13",
+      "if": "r13",
+      "while": "r13",
+      "for": "r13",
+      "print": "r13",
+      "{": "r13",
+      "IDENTIFIER": "r13",
+      "else": "r13"
+    },
+    "41": {
+      "ε": "r14",
+      "var": "r14",
+      "let": "r14",
+      "int": "r14",
+      "float": "r14",
+      "if": "r14",
+      "while": "r14",
+      "for": "r14",
+      "print": "r14",
+      "{": "r14",
+      "IDENTIFIER": "r14",
+      "else": "r14"
+    },
+    "42": {
+      ")": "s59"
+    },
+    "43": {
+      "<": "s61",
+      ">": "s62",
+      "==": "s63",
+      ";": "r33",
+      ")": "r33"
+    },
+    "44": {
+      "+": "s65",
+      "-": "s66",
+      "<": "r37",
+      ">": "r37",
+      "==": "r37",
+      "ε": "r37"
+    },
+    "45": {
+      "*": "s68",
+      "/": "s69",
+      "+": "r41",
+      "-": "r41",
+      "ε": "r41"
+    },
+    "46": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "47": {
+      "*": "r43",
+      "/": "r43",
+      "ε": "r43"
+    },
+    "48": {
+      "*": "r44",
+      "/": "r44",
+      "ε": "r44"
+    },
+    "49": {
+      "*": "r46",
+      "/": "r46",
+      "ε": "r46"
+    },
+    "50": {
+      ")": "s71"
+    },
+    "51": {
+      ";": "s72"
+    },
+    "52": {
+      "IDENTIFIER": "s22"
+    },
+    "53": {
+      "IDENTIFIER": "s22"
+    },
+    "54": {
+      "=": "s75"
+    },
+    "55": {
+      ")": "s76"
+    },
+    "56": {
+      "ε": "r28",
+      "var": "r28",
+      "let": "r28",
+      "int": "r28",
+      "float": "r28",
+      "if": "r28",
+      "while": "r28",
+      "for": "r28",
+      "print": "r28",
+      "{": "r28",
+      "IDENTIFIER": "r28",
+      "else": "r28"
+    },
+    "57": {
+      ";": "r18",
+      ")": "r18"
+    },
+    "58": {
+      ";": "s77"
+    },
+    "59": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22"
+    },
+    "60": {
+      ";": "r29",
+      ")": "r29"
+    },
+    "61": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "62": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "63": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "64": {
+      "<": "r34",
+      ">": "r34",
+      "==": "r34",
+      "ε": "r34"
+    },
+    "65": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "66": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "67": {
+      "+": "r38",
+      "-": "r38",
+      "ε": "r38"
+    },
+    "68": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "69": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "70": {
+      ")": "s86"
+    },
+    "71": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22"
+    },
+    "72": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "73": {
+      "=": "s89"
+    },
+    "74": {
+      "=": "s90"
+    },
+    "75": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "76": {
+      ";": "s92"
+    },
+    "77": {
+      "ε": "r15",
+      "var": "r15",
+      "let": "r15",
+      "int": "r15",
+      "float": "r15",
+      "if": "r15",
+      "while": "r15",
+      "for": "r15",
+      "print": "r15",
+      "{": "r15",
+      "IDENTIFIER": "r15",
+      "else": "r15"
+    },
+    "78": {
+      "else": "s94",
+      "ε": "r21",
+      "var": "r21",
+      "let": "r21",
+      "int": "r21",
+      "float": "r21",
+      "if": "r21",
+      "while": "r21",
+      "for": "r21",
+      "print": "r21",
+      "{": "r21",
+      "IDENTIFIER": "r21"
+    },
+    "79": {
+      "<": "s61",
+      ">": "s62",
+      "==": "s63",
+      ";": "r33",
+      ")": "r33"
+    },
+    "80": {
+      "<": "s61",
+      ">": "s62",
+      "==": "s63",
+      ";": "r33",
+      ")": "r33"
+    },
+    "81": {
+      "<": "s61",
+      ">": "s62",
+      "==": "s63",
+      ";": "r33",
+      ")": "r33"
+    },
+    "82": {
+      "+": "s65",
+      "-": "s66",
+      "<": "r37",
+      ">": "r37",
+      "==": "r37",
+      "ε": "r37"
+    },
+    "83": {
+      "+": "s65",
+      "-": "s66",
+      "<": "r37",
+      ">": "r37",
+      "==": "r37",
+      "ε": "r37"
+    },
+    "84": {
+      "*": "s68",
+      "/": "s69",
+      "+": "r41",
+      "-": "r41",
+      "ε": "r41"
+    },
+    "85": {
+      "*": "s68",
+      "/": "s69",
+      "+": "r41",
+      "-": "r41",
+      "ε": "r41"
+    },
+    "86": {
+      "*": "r42",
+      "/": "r42",
+      "ε": "r42"
+    },
+    "87": {
+      "ε": "r22",
+      "var": "r22",
+      "let": "r22",
+      "int": "r22",
+      "float": "r22",
+      "if": "r22",
+      "while": "r22",
+      "for": "r22",
+      "print": "r22",
+      "{": "r22",
+      "IDENTIFIER": "r22",
+      "else": "r22"
+    },
+    "88": {
+      ";": "s102"
+    },
+    "89": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "90": {
+      "(": "s46",
+      "IDENTIFIER": "s22",
+      "NUMBER": "s49"
+    },
+    "91": {
+      ";": "r26"
+    },
+    "92": {
+      "ε": "r27",
+      "var": "r27",
+      "let": "r27",
+      "int": "r27",
+      "float": "r27",
+      "if": "r27",
+      "while": "r27",
+      "for": "r27",
+      "print": "r27",
+      "{": "r27",
+      "IDENTIFIER": "r27",
+      "else": "r27"
+    },
+    "93": {
+      "ε": "r19",
+      "var": "r19",
+      "let": "r19",
+      "int": "r19",
+      "float": "r19",
+      "if": "r19",
+      "while": "r19",
+      "for": "r19",
+      "print": "r19",
+      "{": "r19",
+      "IDENTIFIER": "r19",
+      "else": "r19"
+    },
+    "94": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22"
+    },
+    "95": {
+      ";": "r30",
+      ")": "r30"
+    },
+    "96": {
+      ";": "r31",
+      ")": "r31"
+    },
+    "97": {
+      ";": "r32",
+      ")": "r32"
+    },
+    "98": {
+      "<": "r35",
+      ">": "r35",
+      "==": "r35",
+      "ε": "r35"
+    },
+    "99": {
+      "<": "r36",
+      ">": "r36",
+      "==": "r36",
+      "ε": "r36"
+    },
+    "100": {
+      "+": "r39",
+      "-": "r39",
+      "ε": "r39"
+    },
+    "101": {
+      "+": "r40",
+      "-": "r40",
+      "ε": "r40"
+    },
+    "102": {
+      "IDENTIFIER": "s22"
+    },
+    "103": {
+      ";": "r24"
+    },
+    "104": {
+      ";": "r25"
+    },
+    "105": {
+      "ε": "r20",
+      "var": "r20",
+      "let": "r20",
+      "int": "r20",
+      "float": "r20",
+      "if": "r20",
+      "while": "r20",
+      "for": "r20",
+      "print": "r20",
+      "{": "r20",
+      "IDENTIFIER": "r20",
+      "else": "r20"
+    },
+    "106": {
+      ")": "s107"
+    },
+    "107": {
+      "var": "s11",
+      "let": "s12",
+      "int": "s13",
+      "float": "s14",
+      "if": "s16",
+      "while": "s17",
+      "for": "s18",
+      "print": "s19",
+      "{": "s20",
+      "IDENTIFIER": "s22"
+    },
+    "108": {
+      "ε": "r23",
+      "var": "r23",
+      "let": "r23",
+      "int": "r23",
+      "float": "r23",
+      "if": "r23",
+      "while": "r23",
+      "for": "r23",
+      "print": "r23",
+      "{": "r23",
+      "IDENTIFIER": "r23",
+      "else": "r23"
+    }
+  },
+  "goto": {
+    "0": {
+      "Program": 1,
+      "StmtList": 2,
+      "Stmt": 3,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "1": {},
+    "2": {},
+    "3": {
+      "StmtList": 24,
+      "Stmt": 3,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "4": {},
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {},
+    "10": {},
+    "11": {
+      "id": 25
+    },
+    "12": {
+      "id": 26
+    },
+    "13": {
+      "id": 27
+    },
+    "14": {
+      "id": 28
+    },
+    "15": {},
+    "16": {},
+    "17": {},
+    "18": {},
+    "19": {},
+    "20": {
+      "StmtList": 34,
+      "Stmt": 3,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "21": {},
+    "22": {},
+    "23": {},
+    "24": {},
+    "25": {
+      "DeclTail": 36
+    },
+    "26": {
+      "DeclTail": 39
+    },
+    "27": {
+      "DeclTail": 40
+    },
+    "28": {
+      "DeclTail": 41
+    },
+    "29": {},
+    "30": {
+      "BoolExpr": 42,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "31": {
+      "BoolExpr": 50,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "32": {
+      "ForInit": 51,
+      "id": 54
+    },
+    "33": {
+      "BoolExpr": 55,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "34": {},
+    "35": {
+      "BoolExpr": 57,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "36": {},
+    "37": {
+      "BoolExpr": 58,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "38": {},
+    "39": {},
+    "40": {},
+    "41": {},
+    "42": {},
+    "43": {
+      "BoolExprPrime": 60
+    },
+    "44": {
+      "ExprPrime": 64
+    },
+    "45": {
+      "TermPrime": 67
+    },
+    "46": {
+      "BoolExpr": 70,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "47": {},
+    "48": {},
+    "49": {},
+    "50": {},
+    "51": {},
+    "52": {
+      "id": 73
+    },
+    "53": {
+      "id": 74
+    },
+    "54": {},
+    "55": {},
+    "56": {},
+    "57": {},
+    "58": {},
+    "59": {
+      "Stmt": 78,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "60": {},
+    "61": {
+      "Expr": 79,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "62": {
+      "Expr": 80,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "63": {
+      "Expr": 81,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "64": {},
+    "65": {
+      "Term": 82,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "66": {
+      "Term": 83,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "67": {},
+    "68": {
+      "Factor": 84,
+      "id": 47,
+      "number": 48
+    },
+    "69": {
+      "Factor": 85,
+      "id": 47,
+      "number": 48
+    },
+    "70": {},
+    "71": {
+      "Stmt": 87,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "72": {
+      "BoolExpr": 88,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "73": {},
+    "74": {},
+    "75": {
+      "BoolExpr": 91,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "76": {},
+    "77": {},
+    "78": {
+      "ElseOpt": 93
+    },
+    "79": {
+      "BoolExprPrime": 95
+    },
+    "80": {
+      "BoolExprPrime": 96
+    },
+    "81": {
+      "BoolExprPrime": 97
+    },
+    "82": {
+      "ExprPrime": 98
+    },
+    "83": {
+      "ExprPrime": 99
+    },
+    "84": {
+      "TermPrime": 100
+    },
+    "85": {
+      "TermPrime": 101
+    },
+    "86": {},
+    "87": {},
+    "88": {},
+    "89": {
+      "BoolExpr": 103,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "90": {
+      "BoolExpr": 104,
+      "Expr": 43,
+      "Term": 44,
+      "Factor": 45,
+      "id": 47,
+      "number": 48
+    },
+    "91": {},
+    "92": {},
+    "93": {},
+    "94": {
+      "Stmt": 105,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "95": {},
+    "96": {},
+    "97": {},
+    "98": {},
+    "99": {},
+    "100": {},
+    "101": {},
+    "102": {
+      "AssignNoSemi": 106,
+      "id": 21
+    },
+    "103": {},
+    "104": {},
+    "105": {},
+    "106": {},
+    "107": {
+      "Stmt": 108,
+      "Decl": 4,
+      "Assign": 5,
+      "If": 6,
+      "While": 7,
+      "For": 8,
+      "Print": 9,
+      "Block": 10,
+      "AssignNoSemi": 15,
+      "id": 21
+    },
+    "108": {}
+  },
+  "productions": [
+    {
+      "nonTerminal": "Program'",
+      "production": [
+        "Program"
+      ]
+    },
+    {
+      "nonTerminal": "Program",
+      "production": [
+        "StmtList",
+        "EOF"
+      ]
+    },
+    {
+      "nonTerminal": "StmtList",
+      "production": [
+        "Stmt",
+        "StmtList"
+      ]
+    },
+    {
+      "nonTerminal": "StmtList",
+      "production": [
+        "ε"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "Decl"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "Assign"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "If"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "While"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "For"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "Print"
+      ]
+    },
+    {
+      "nonTerminal": "Stmt",
+      "production": [
+        "Block"
+      ]
+    },
+    {
+      "nonTerminal": "Decl",
+      "production": [
+        "var",
+        "id",
+        "DeclTail"
+      ]
+    },
+    {
+      "nonTerminal": "Decl",
+      "production": [
+        "let",
+        "id",
+        "DeclTail"
+      ]
+    },
+    {
+      "nonTerminal": "Decl",
+      "production": [
+        "int",
+        "id",
+        "DeclTail"
+      ]
+    },
+    {
+      "nonTerminal": "Decl",
+      "production": [
+        "float",
+        "id",
+        "DeclTail"
+      ]
+    },
+    {
+      "nonTerminal": "DeclTail",
+      "production": [
+        "=",
+        "BoolExpr",
+        ";"
+      ]
+    },
+    {
+      "nonTerminal": "DeclTail",
+      "production": [
+        ";"
+      ]
+    },
+    {
+      "nonTerminal": "Assign",
+      "production": [
+        "AssignNoSemi",
+        ";"
+      ]
+    },
+    {
+      "nonTerminal": "AssignNoSemi",
+      "production": [
+        "id",
+        "=",
+        "BoolExpr"
+      ]
+    },
+    {
+      "nonTerminal": "If",
+      "production": [
+        "if",
+        "(",
+        "BoolExpr",
+        ")",
+        "Stmt",
+        "ElseOpt"
+      ]
+    },
+    {
+      "nonTerminal": "ElseOpt",
+      "production": [
+        "else",
+        "Stmt"
+      ]
+    },
+    {
+      "nonTerminal": "ElseOpt",
+      "production": [
+        "ε"
+      ]
+    },
+    {
+      "nonTerminal": "While",
+      "production": [
+        "while",
+        "(",
+        "BoolExpr",
+        ")",
+        "Stmt"
+      ]
+    },
+    {
+      "nonTerminal": "For",
+      "production": [
+        "for",
+        "(",
+        "ForInit",
+        ";",
+        "BoolExpr",
+        ";",
+        "AssignNoSemi",
+        ")",
+        "Stmt"
+      ]
+    },
+    {
+      "nonTerminal": "ForInit",
+      "production": [
+        "let",
+        "id",
+        "=",
+        "BoolExpr"
+      ]
+    },
+    {
+      "nonTerminal": "ForInit",
+      "production": [
+        "var",
+        "id",
+        "=",
+        "BoolExpr"
+      ]
+    },
+    {
+      "nonTerminal": "ForInit",
+      "production": [
+        "id",
+        "=",
+        "BoolExpr"
+      ]
+    },
+    {
+      "nonTerminal": "Print",
+      "production": [
+        "print",
+        "(",
+        "BoolExpr",
+        ")",
+        ";"
+      ]
+    },
+    {
+      "nonTerminal": "Block",
+      "production": [
+        "{",
+        "StmtList",
+        "}"
+      ]
+    },
+    {
+      "nonTerminal": "BoolExpr",
+      "production": [
+        "Expr",
+        "BoolExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "BoolExprPrime",
+      "production": [
+        "<",
+        "Expr",
+        "BoolExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "BoolExprPrime",
+      "production": [
+        ">",
+        "Expr",
+        "BoolExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "BoolExprPrime",
+      "production": [
+        "==",
+        "Expr",
+        "BoolExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "BoolExprPrime",
+      "production": [
+        "ε"
+      ]
+    },
+    {
+      "nonTerminal": "Expr",
+      "production": [
+        "Term",
+        "ExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "ExprPrime",
+      "production": [
+        "+",
+        "Term",
+        "ExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "ExprPrime",
+      "production": [
+        "-",
+        "Term",
+        "ExprPrime"
+      ]
+    },
+    {
+      "nonTerminal": "ExprPrime",
+      "production": [
+        "ε"
+      ]
+    },
+    {
+      "nonTerminal": "Term",
+      "production": [
+        "Factor",
+        "TermPrime"
+      ]
+    },
+    {
+      "nonTerminal": "TermPrime",
+      "production": [
+        "*",
+        "Factor",
+        "TermPrime"
+      ]
+    },
+    {
+      "nonTerminal": "TermPrime",
+      "production": [
+        "/",
+        "Factor",
+        "TermPrime"
+      ]
+    },
+    {
+      "nonTerminal": "TermPrime",
+      "production": [
+        "ε"
+      ]
+    },
+    {
+      "nonTerminal": "Factor",
+      "production": [
+        "(",
+        "BoolExpr",
+        ")"
+      ]
+    },
+    {
+      "nonTerminal": "Factor",
+      "production": [
+        "id"
+      ]
+    },
+    {
+      "nonTerminal": "Factor",
+      "production": [
+        "number"
+      ]
+    },
+    {
+      "nonTerminal": "id",
+      "production": [
+        "IDENTIFIER"
+      ]
+    },
+    {
+      "nonTerminal": "number",
+      "production": [
+        "NUMBER"
+      ]
+    }
+  ]
+}
