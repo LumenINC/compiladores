@@ -15,29 +15,36 @@ O projeto cumpre os requisitos principais e os pontos extras:
 
 Para garantir que os comandos funcionem corretamente, utilize a seguinte estrutura:
 
+```text
 projeto-compilador/
 ├── docs/
-│ └── gramatica.txt # Definição da Gramática Livre de Contexto
+│   └── gramatica.txt            # Definição da Gramática Livre de Contexto
 ├── src/
-│ ├── grammar-converter/ # Módulo Gerador LL(1)
-│ │ ├── build_table.js # Script principal de geração LL(1)
-│ │ ├── grammar-parser.js
-│ │ ├── left-factorer.js
-│ │ ├── left-recursion-remover.js
-│ │ └── ll1_table.json # (Gerado automaticamente)
-│ ├── slr-parser/ # Módulo Gerador SLR
-│ │ ├── build-slr-table.js # Script principal de geração SLR
-│ │ ├── slr-parser.js # Algoritmo de análise SLR
-│ │ ├── lr0-items.js # Gerador de Itens LR(0)
-│ │ ├── augmented-grammar.js
-│ │ └── slr-table.json # (Gerado automaticamente)
-│ ├── lexer.js # O Analisador Léxico
-│ ├── main.js # Arquivo principal (Executa todo o fluxo)
-│ ├── parser_ll1.js # Algoritmo de análise LL(1)
-│ └── sample_code.js # Código fonte de entrada para teste
+│   ├── grammar-converter/
+│   ├── grammar-converter/       # Módulo Gerador LL(1)
+│   │   ├── build_table.js       # Script principal de geração LL(1)
+│   │   ├── grammar-parser.js
+│   │   ├── index.js
+│   │   ├── left-factorer.js
+│   │   └── left-recursion-remover.js
+│   ├── lexer.js
+│   ├── parser.js
+│   ├── main.js
+│   └── sample_code.js
+├── tests/
+│   └── runTests.js
+│   ├── slr-parser/              # Módulo Gerador SLR
+│   │   ├── build-slr-table.js   # Script principal de geração SLR
+│   │   ├── slr-parser.js        # Algoritmo de análise SLR
+│   │   ├── lr0-items.js         # Gerador de Itens LR(0)
+│   │   └── augmented-grammar.js
+│   ├── lexer.js                 # O Analisador Léxico
+│   ├── main.js                  # Arquivo principal (Executa todo o fluxo)
+│   ├── parser_ll1.js            # Algoritmo de análise LL(1)
+│   └── sample_code.js           # Código fonte de entrada para teste
 ├── package.json
 └── README.md
-
+```
 
 ## 🚀 2. Guia de Execução (Roteiro de Apresentação)
 
