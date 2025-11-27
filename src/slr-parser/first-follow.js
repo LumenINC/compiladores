@@ -5,18 +5,23 @@ const calculateFirstSets = (grammar) => {
     const nonTerminals = getNonTerminals(grammar);
     const terminals = getTerminals(grammar);
 
-    // Initialize FIRST for all terminals to themselves
+    // Inicializa FIRST para terminais com eles mesmos
+    // IMPORTANTE: Não incluímos EOF/epsilon nos terminais normais a menos que explicitamente tratado
     terminals.forEach(t => {
         firstSets[t] = new Set([t]);
     });
 
-    // Initialize FIRST for non-terminals to empty sets
+    // Inicializa FIRST para não-terminais como vazio
     nonTerminals.forEach(nt => {
         firstSets[nt] = new Set();
     });
 
-    // Add a rule for epsilon
+    // Garante que 'epsilon' (ou 'ε') tenha seu próprio conjunto se usado
     firstSets['epsilon'] = new Set(['epsilon']);
+    firstSets['ε'] = new Set(['ε']);
+    // Garante que EOF tenha seu conjunto, mas cuidado ao propagar
+    firstSets['EOF'] = new Set(['EOF']);
+    firstSets['$'] = new Set(['$']);
 
     let changed = true;
     while (changed) {
@@ -27,27 +32,38 @@ const calculateFirstSets = (grammar) => {
                 const symbols = production;
                 const originalSize = firstSets[nonTerminal].size;
 
-                let canReachEpsilon = true;
+                let canReachEpsilon = true; // Flag para saber se a produção inteira anula
+
                 for (const symbol of symbols) {
-                    // Skip if symbol is not in firstSets (e.g., epsilon handled separately)
+                    // Pula se o símbolo não tem conjunto FIRST definido (erro de gramática ou símbolo novo)
                     if (!firstSets[symbol]) continue;
 
                     const firstOfSymbol = firstSets[symbol];
+                    let symbolHasEpsilon = false;
 
                     firstOfSymbol.forEach(terminal => {
-                        if (terminal !== 'epsilon') {
+                        // AQUI ESTÁ A CORREÇÃO:
+                        // Filtramos 'epsilon' para não adicionar diretamente, a menos que toda a cadeia anule
+                        // E filtramos 'EOF' se ele não fizer sentido no contexto de FIRST de um NT
+                        if (terminal !== 'epsilon' && terminal !== 'ε') {
                             firstSets[nonTerminal].add(terminal);
+                        } else {
+                            symbolHasEpsilon = true;
                         }
                     });
 
-                    if (!firstOfSymbol.has('epsilon')) {
+                    // Se esse símbolo não pode ser epsilon, então os próximos símbolos
+                    // não contribuem para o FIRST deste não-terminal.
+                    if (!symbolHasEpsilon) {
                         canReachEpsilon = false;
-                        break;
+                        break; 
                     }
                 }
 
+                // Se todos os símbolos da produção podem derivar epsilon, 
+                // então o próprio não-terminal produz epsilon.
                 if (canReachEpsilon) {
-                    firstSets[nonTerminal].add('epsilon');
+                    firstSets[nonTerminal].add('ε');
                 }
 
                 if (firstSets[nonTerminal].size > originalSize) {
@@ -57,19 +73,30 @@ const calculateFirstSets = (grammar) => {
         }
     }
 
+    // LIMPEZA FINAL: Remove EOF dos conjuntos FIRST de não-terminais, 
+    // exceto se for explicitamente desejado (raro em LL1 puro).
+    // Geralmente EOF só aparece no FOLLOW.
+    for (const nt of nonTerminals) {
+        if (firstSets[nt].has('EOF')) firstSets[nt].delete('EOF');
+        if (firstSets[nt].has('$')) firstSets[nt].delete('$');
+    }
+
     return firstSets;
 };
 
 const calculateFollowSets = (grammar, firstSets) => {
     const followSets = {};
     const nonTerminals = getNonTerminals(grammar);
-    const startSymbol = Object.keys(grammar)[0];
+    const startSymbol = Object.keys(grammar)[0]; // O primeiro NT é o inicial
 
     nonTerminals.forEach(nt => {
         followSets[nt] = new Set();
     });
 
-    followSets[startSymbol].add('$');
+    // Regra 1: O símbolo inicial contém EOF no FOLLOW
+    if (startSymbol) {
+        followSets[startSymbol].add('$'); // Usamos $ para representar EOF na tabela
+    }
 
     let changed = true;
     while (changed) {
@@ -77,46 +104,53 @@ const calculateFollowSets = (grammar, firstSets) => {
 
         for (const nonTerminal in grammar) {
             for (const production of grammar[nonTerminal]) {
-                const symbols = production;
+                // Para cada produção A -> alpha
+                for (let i = 0; i < production.length; i++) {
+                    const symbol = production[i];
 
-                for (let i = 0; i < symbols.length; i++) {
-                    const symbol = symbols[i];
+                    // Só calculamos FOLLOW para não-terminais
+                    if (!nonTerminals.includes(symbol)) continue;
 
-                    if (nonTerminals.includes(symbol)) {
-                        const originalSize = followSets[symbol].size;
-                        const rest = symbols.slice(i + 1);
+                    const originalSize = followSets[symbol].size;
+                    
+                    // O que vem depois do símbolo atual? (beta)
+                    const rest = production.slice(i + 1);
+                    
+                    let canBeEpsilon = true;
 
-                        if (rest.length > 0) {
-                            let restFirst = new Set();
-                            let canBeEpsilon = true;
+                    // Regra 2: Adiciona FIRST(beta) \ {epsilon} ao FOLLOW(symbol)
+                    if (rest.length > 0) {
+                        for (const nextSymbol of rest) {
+                             const nextFirst = firstSets[nextSymbol];
+                             // Se for terminal ou NT desconhecido, trate como conjunto unitário se não existir
+                             const setNext = nextFirst || new Set([nextSymbol]);
 
-                            for (const nextSymbol of rest) {
-                                const nextFirst = firstSets[nextSymbol];
-                                if (!nextFirst) continue;
+                             let nextHasEpsilon = false;
+                             setNext.forEach(s => {
+                                 if (s !== 'epsilon' && s !== 'ε') {
+                                     followSets[symbol].add(s);
+                                 } else {
+                                     nextHasEpsilon = true;
+                                 }
+                             });
 
-                                nextFirst.forEach(s => {
-                                    if (s !== 'epsilon') {
-                                        restFirst.add(s);
-                                    }
-                                });
-                                if (!nextFirst.has('epsilon')) {
-                                    canBeEpsilon = false;
-                                    break;
-                                }
-                            }
+                             if (!nextHasEpsilon) {
+                                 canBeEpsilon = false;
+                                 break;
+                             }
+                        }
+                    }
 
-                            restFirst.forEach(s => followSets[symbol].add(s));
-
-                            if (canBeEpsilon) {
-                                followSets[nonTerminal].forEach(s => followSets[symbol].add(s));
-                            }
-                        } else {
+                    // Regra 3: Se A -> alpha B ou A -> alpha B beta (onde beta => epsilon)
+                    // então FOLLOW(A) está contido em FOLLOW(B)
+                    if (canBeEpsilon) {
+                        if (followSets[nonTerminal]) {
                             followSets[nonTerminal].forEach(s => followSets[symbol].add(s));
                         }
+                    }
 
-                        if (followSets[symbol].size > originalSize) {
-                            changed = true;
-                        }
+                    if (followSets[symbol].size > originalSize) {
+                        changed = true;
                     }
                 }
             }

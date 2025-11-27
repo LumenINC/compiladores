@@ -9,6 +9,6 @@ for (let i = 0; i < 5; i = i + 1) {
 }
 
 // Laço 'while' simples
-while (y > 15) {
+while (y > 15){
     y = y - 1;
 }
