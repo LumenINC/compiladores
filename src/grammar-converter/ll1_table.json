@@ -29,6 +29,9 @@
         "While"
       ],
       [
+        "For"
+      ],
+      [
         "Print"
       ],
       [
@@ -40,12 +43,27 @@
         "var",
         "id",
         "DeclTail"
+      ],
+      [
+        "let",
+        "id",
+        "DeclTail"
+      ],
+      [
+        "int",
+        "id",
+        "DeclTail"
+      ],
+      [
+        "float",
+        "id",
+        "DeclTail"
       ]
     ],
     "DeclTail": [
       [
         "=",
-        "Expr",
+        "BoolExpr",
         ";"
       ],
       [
@@ -54,17 +72,22 @@
     ],
     "Assign": [
       [
+        "AssignNoSemi",
+        ";"
+      ]
+    ],
+    "AssignNoSemi": [
+      [
         "id",
         "=",
-        "Expr",
-        ";"
+        "BoolExpr"
       ]
     ],
     "If": [
       [
         "if",
         "(",
-        "Expr",
+        "BoolExpr",
         ")",
         "Stmt",
         "ElseOpt"
@@ -83,16 +106,48 @@
       [
         "while",
         "(",
-        "Expr",
+        "BoolExpr",
         ")",
         "Stmt"
+      ]
+    ],
+    "For": [
+      [
+        "for",
+        "(",
+        "ForInit",
+        ";",
+        "BoolExpr",
+        ";",
+        "AssignNoSemi",
+        ")",
+        "Stmt"
+      ]
+    ],
+    "ForInit": [
+      [
+        "let",
+        "id",
+        "=",
+        "BoolExpr"
+      ],
+      [
+        "var",
+        "id",
+        "=",
+        "BoolExpr"
+      ],
+      [
+        "id",
+        "=",
+        "BoolExpr"
       ]
     ],
     "Print": [
       [
         "print",
         "(",
-        "Expr",
+        "BoolExpr",
         ")",
         ";"
       ]
@@ -104,6 +159,32 @@
         "}"
       ]
     ],
+    "BoolExpr": [
+      [
+        "Expr",
+        "BoolExprPrime"
+      ]
+    ],
+    "BoolExprPrime": [
+      [
+        "<",
+        "Expr",
+        "BoolExprPrime"
+      ],
+      [
+        ">",
+        "Expr",
+        "BoolExprPrime"
+      ],
+      [
+        "==",
+        "Expr",
+        "BoolExprPrime"
+      ],
+      [
+        "ε"
+      ]
+    ],
     "Expr": [
       [
         "Term",
@@ -113,6 +194,11 @@
     "ExprPrime": [
       [
         "+",
+        "Term",
+        "ExprPrime"
+      ],
+      [
+        "-",
         "Term",
         "ExprPrime"
       ],
@@ -133,13 +219,18 @@
         "TermPrime"
       ],
       [
+        "/",
+        "Factor",
+        "TermPrime"
+      ],
+      [
         "ε"
       ]
     ],
     "Factor": [
       [
         "(",
-        "Expr",
+        "BoolExpr",
         ")"
       ],
       [
@@ -167,11 +258,16 @@
     "Decl",
     "DeclTail",
     "Assign",
+    "AssignNoSemi",
     "If",
     "ElseOpt",
     "While",
+    "For",
+    "ForInit",
     "Print",
     "Block",
+    "BoolExpr",
+    "BoolExprPrime",
     "Expr",
     "ExprPrime",
     "Term",
@@ -183,6 +279,9 @@
   "terminals": [
     "EOF",
     "var",
+    "let",
+    "int",
+    "float",
     "=",
     ";",
     "if",
@@ -190,11 +289,17 @@
     ")",
     "else",
     "while",
+    "for",
     "print",
     "{",
     "}",
+    "<",
+    ">",
+    "==",
     "+",
+    "-",
     "*",
+    "/",
     "IDENTIFIER",
     "NUMBER",
     "$"
@@ -203,8 +308,12 @@
     "Program": [
       "EOF",
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER"
@@ -212,28 +321,42 @@
     "StmtList": [
       "ε",
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER"
     ],
     "Stmt": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER"
     ],
     "Decl": [
-      "var"
+      "var",
+      "let",
+      "int",
+      "float"
     ],
     "DeclTail": [
       "=",
       ";"
     ],
     "Assign": [
+      "IDENTIFIER"
+    ],
+    "AssignNoSemi": [
       "IDENTIFIER"
     ],
     "If": [
@@ -246,11 +369,30 @@
     "While": [
       "while"
     ],
+    "For": [
+      "for"
+    ],
+    "ForInit": [
+      "let",
+      "var",
+      "IDENTIFIER"
+    ],
     "Print": [
       "print"
     ],
     "Block": [
       "{"
+    ],
+    "BoolExpr": [
+      "(",
+      "IDENTIFIER",
+      "NUMBER"
+    ],
+    "BoolExprPrime": [
+      "<",
+      ">",
+      "==",
+      "ε"
     ],
     "Expr": [
       "(",
@@ -259,6 +401,7 @@
     ],
     "ExprPrime": [
       "+",
+      "-",
       "ε"
     ],
     "Term": [
@@ -268,6 +411,7 @@
     ],
     "TermPrime": [
       "*",
+      "/",
       "ε"
     ],
     "Factor": [
@@ -292,8 +436,12 @@
     ],
     "Stmt": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -303,8 +451,12 @@
     ],
     "Decl": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -314,8 +466,12 @@
     ],
     "DeclTail": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -325,8 +481,12 @@
     ],
     "Assign": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -334,10 +494,18 @@
       "else",
       "}"
     ],
+    "AssignNoSemi": [
+      ";",
+      ")"
+    ],
     "If": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -347,8 +515,12 @@
     ],
     "ElseOpt": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -358,8 +530,12 @@
     ],
     "While": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -367,10 +543,32 @@
       "else",
       "}"
     ],
-    "Print": [
+    "For": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "EOF",
+      "else",
+      "}"
+    ],
+    "ForInit": [
+      ";"
+    ],
+    "Print": [
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -380,8 +578,12 @@
     ],
     "Block": [
       "var",
+      "let",
+      "int",
+      "float",
       "if",
       "while",
+      "for",
       "print",
       "{",
       "IDENTIFIER",
@@ -389,27 +591,54 @@
       "else",
       "}"
     ],
+    "BoolExpr": [
+      ";",
+      ")"
+    ],
+    "BoolExprPrime": [
+      ";",
+      ")"
+    ],
     "Expr": [
+      "<",
+      ">",
+      "==",
       ";",
       ")"
     ],
     "ExprPrime": [
+      "<",
+      ">",
+      "==",
       ";",
       ")"
     ],
     "Term": [
       "+",
+      "-",
+      "<",
+      ">",
+      "==",
       ";",
       ")"
     ],
     "TermPrime": [
       "+",
+      "-",
+      "<",
+      ">",
+      "==",
       ";",
       ")"
     ],
     "Factor": [
       "*",
+      "/",
       "+",
+      "-",
+      "<",
+      ">",
+      "==",
       ";",
       ")"
     ],
@@ -417,12 +646,22 @@
       "=",
       ";",
       "*",
+      "/",
       "+",
+      "-",
+      "<",
+      ">",
+      "==",
       ")"
     ],
     "number": [
       "*",
+      "/",
       "+",
+      "-",
+      "<",
+      ">",
+      "==",
       ";",
       ")"
     ]
@@ -434,6 +673,18 @@
         "EOF"
       ],
       "var": [
+        "StmtList",
+        "EOF"
+      ],
+      "let": [
+        "StmtList",
+        "EOF"
+      ],
+      "int": [
+        "StmtList",
+        "EOF"
+      ],
+      "float": [
         "StmtList",
         "EOF"
       ],
@@ -450,6 +701,10 @@
         "StmtList",
         "EOF"
       ],
+      "for": [
+        "StmtList",
+        "EOF"
+      ],
       "print": [
         "StmtList",
         "EOF"
@@ -459,8 +714,13 @@
         "EOF"
       ],
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "StmtList",
         "EOF"
@@ -476,6 +736,18 @@
         "Stmt",
         "StmtList"
       ],
+      "let": [
+        "Stmt",
+        "StmtList"
+      ],
+      "int": [
+        "Stmt",
+        "StmtList"
+      ],
+      "float": [
+        "Stmt",
+        "StmtList"
+      ],
       "=": null,
       ";": null,
       "if": [
@@ -486,6 +758,10 @@
       ")": null,
       "else": null,
       "while": [
+        "Stmt",
+        "StmtList"
+      ],
+      "for": [
         "Stmt",
         "StmtList"
       ],
@@ -500,8 +776,13 @@
       "}": [
         "ε"
       ],
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "Stmt",
         "StmtList"
@@ -512,6 +793,15 @@
     "Stmt": {
       "EOF": null,
       "var": [
+        "Decl"
+      ],
+      "let": [
+        "Decl"
+      ],
+      "int": [
+        "Decl"
+      ],
+      "float": [
         "Decl"
       ],
       "=": null,
@@ -525,6 +815,9 @@
       "while": [
         "While"
       ],
+      "for": [
+        "For"
+      ],
       "print": [
         "Print"
       ],
@@ -532,8 +825,13 @@
         "Block"
       ],
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "Assign"
       ],
@@ -547,6 +845,21 @@
         "id",
         "DeclTail"
       ],
+      "let": [
+        "let",
+        "id",
+        "DeclTail"
+      ],
+      "int": [
+        "int",
+        "id",
+        "DeclTail"
+      ],
+      "float": [
+        "float",
+        "id",
+        "DeclTail"
+      ],
       "=": null,
       ";": null,
       "if": null,
@@ -554,11 +867,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
@@ -566,9 +885,12 @@
     "DeclTail": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": [
         "=",
-        "Expr",
+        "BoolExpr",
         ";"
       ],
       ";": [
@@ -579,11 +901,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
@@ -591,6 +919,9 @@
     "Assign": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -598,16 +929,52 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
+      "IDENTIFIER": [
+        "AssignNoSemi",
+        ";"
+      ],
+      "NUMBER": null,
+      "$": null
+    },
+    "AssignNoSemi": {
+      "EOF": null,
+      "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
+      "=": null,
+      ";": null,
+      "if": null,
+      "(": null,
+      ")": null,
+      "else": null,
+      "while": null,
+      "for": null,
+      "print": null,
+      "{": null,
+      "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
+      "+": null,
+      "-": null,
+      "*": null,
+      "/": null,
       "IDENTIFIER": [
         "id",
         "=",
-        "Expr",
-        ";"
+        "BoolExpr"
       ],
       "NUMBER": null,
       "$": null
@@ -615,12 +982,15 @@
     "If": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": [
         "if",
         "(",
-        "Expr",
+        "BoolExpr",
         ")",
         "Stmt",
         "ElseOpt"
@@ -629,11 +999,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
@@ -643,6 +1019,15 @@
         "ε"
       ],
       "var": [
+        "ε"
+      ],
+      "let": [
+        "ε"
+      ],
+      "int": [
+        "ε"
+      ],
+      "float": [
         "ε"
       ],
       "=": null,
@@ -658,6 +1043,9 @@
       "while": [
         "ε"
       ],
+      "for": [
+        "ε"
+      ],
       "print": [
         "ε"
       ],
@@ -667,8 +1055,13 @@
       "}": [
         "ε"
       ],
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "ε"
       ],
@@ -678,6 +1071,9 @@
     "While": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -687,22 +1083,31 @@
       "while": [
         "while",
         "(",
-        "Expr",
+        "BoolExpr",
         ")",
         "Stmt"
       ],
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
     },
-    "Print": {
+    "For": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -710,17 +1115,103 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": [
+        "for",
+        "(",
+        "ForInit",
+        ";",
+        "BoolExpr",
+        ";",
+        "AssignNoSemi",
+        ")",
+        "Stmt"
+      ],
+      "print": null,
+      "{": null,
+      "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
+      "+": null,
+      "-": null,
+      "*": null,
+      "/": null,
+      "IDENTIFIER": null,
+      "NUMBER": null,
+      "$": null
+    },
+    "ForInit": {
+      "EOF": null,
+      "var": [
+        "var",
+        "id",
+        "=",
+        "BoolExpr"
+      ],
+      "let": [
+        "let",
+        "id",
+        "=",
+        "BoolExpr"
+      ],
+      "int": null,
+      "float": null,
+      "=": null,
+      ";": null,
+      "if": null,
+      "(": null,
+      ")": null,
+      "else": null,
+      "while": null,
+      "for": null,
+      "print": null,
+      "{": null,
+      "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
+      "+": null,
+      "-": null,
+      "*": null,
+      "/": null,
+      "IDENTIFIER": [
+        "id",
+        "=",
+        "BoolExpr"
+      ],
+      "NUMBER": null,
+      "$": null
+    },
+    "Print": {
+      "EOF": null,
+      "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
+      "=": null,
+      ";": null,
+      "if": null,
+      "(": null,
+      ")": null,
+      "else": null,
+      "while": null,
+      "for": null,
       "print": [
         "print",
         "(",
-        "Expr",
+        "BoolExpr",
         ")",
         ";"
       ],
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
@@ -728,6 +1219,9 @@
     "Block": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -735,6 +1229,7 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": [
         "{",
@@ -742,8 +1237,94 @@
         "}"
       ],
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
+      "IDENTIFIER": null,
+      "NUMBER": null,
+      "$": null
+    },
+    "BoolExpr": {
+      "EOF": null,
+      "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
+      "=": null,
+      ";": null,
+      "if": null,
+      "(": [
+        "Expr",
+        "BoolExprPrime"
+      ],
+      ")": null,
+      "else": null,
+      "while": null,
+      "for": null,
+      "print": null,
+      "{": null,
+      "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
+      "+": null,
+      "-": null,
+      "*": null,
+      "/": null,
+      "IDENTIFIER": [
+        "Expr",
+        "BoolExprPrime"
+      ],
+      "NUMBER": [
+        "Expr",
+        "BoolExprPrime"
+      ],
+      "$": null
+    },
+    "BoolExprPrime": {
+      "EOF": null,
+      "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
+      "=": null,
+      ";": [
+        "ε"
+      ],
+      "if": null,
+      "(": null,
+      ")": [
+        "ε"
+      ],
+      "else": null,
+      "while": null,
+      "for": null,
+      "print": null,
+      "{": null,
+      "}": null,
+      "<": [
+        "<",
+        "Expr",
+        "BoolExprPrime"
+      ],
+      ">": [
+        ">",
+        "Expr",
+        "BoolExprPrime"
+      ],
+      "==": [
+        "==",
+        "Expr",
+        "BoolExprPrime"
+      ],
+      "+": null,
+      "-": null,
+      "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
@@ -751,6 +1332,9 @@
     "Expr": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -761,11 +1345,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "Term",
         "ExprPrime"
@@ -779,6 +1369,9 @@
     "ExprPrime": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": [
         "ε"
@@ -790,15 +1383,31 @@
       ],
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": [
+        "ε"
+      ],
+      ">": [
+        "ε"
+      ],
+      "==": [
+        "ε"
+      ],
       "+": [
         "+",
         "Term",
         "ExprPrime"
       ],
+      "-": [
+        "-",
+        "Term",
+        "ExprPrime"
+      ],
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": null,
       "$": null
@@ -806,6 +1415,9 @@
     "Term": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -816,11 +1428,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "Factor",
         "TermPrime"
@@ -834,6 +1452,9 @@
     "TermPrime": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": [
         "ε"
@@ -845,14 +1466,32 @@
       ],
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": [
+        "ε"
+      ],
+      ">": [
+        "ε"
+      ],
+      "==": [
+        "ε"
+      ],
       "+": [
+        "ε"
+      ],
+      "-": [
         "ε"
       ],
       "*": [
         "*",
+        "Factor",
+        "TermPrime"
+      ],
+      "/": [
+        "/",
         "Factor",
         "TermPrime"
       ],
@@ -863,22 +1502,31 @@
     "Factor": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
       "(": [
         "(",
-        "Expr",
+        "BoolExpr",
         ")"
       ],
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "id"
       ],
@@ -890,6 +1538,9 @@
     "id": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -897,11 +1548,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": [
         "IDENTIFIER"
       ],
@@ -911,6 +1568,9 @@
     "number": {
       "EOF": null,
       "var": null,
+      "let": null,
+      "int": null,
+      "float": null,
       "=": null,
       ";": null,
       "if": null,
@@ -918,11 +1578,17 @@
       ")": null,
       "else": null,
       "while": null,
+      "for": null,
       "print": null,
       "{": null,
       "}": null,
+      "<": null,
+      ">": null,
+      "==": null,
       "+": null,
+      "-": null,
       "*": null,
+      "/": null,
       "IDENTIFIER": null,
       "NUMBER": [
         "NUMBER"

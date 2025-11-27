@@ -2,29 +2,36 @@ Program -> StmtList EOF
 
 StmtList -> Stmt StmtList | ε
 
-Stmt -> Decl | Assign | If | While | Print | Block
+Stmt -> Decl | Assign | If | While | For | Print | Block
 
-Decl -> "var" id DeclTail
-DeclTail -> "=" Expr ";" | ";"
+Decl -> var id DeclTail | let id DeclTail | int id DeclTail | float id DeclTail
+DeclTail -> = BoolExpr ; | ;
 
-Assign -> id "=" Expr ";"
+Assign -> AssignNoSemi ;
+AssignNoSemi -> id = BoolExpr
 
-If -> "if" "(" Expr ")" Stmt ElseOpt
-ElseOpt -> "else" Stmt | ε
+If -> if ( BoolExpr ) Stmt ElseOpt
+ElseOpt -> else Stmt | ε
 
-While -> "while" "(" Expr ")" Stmt
+While -> while ( BoolExpr ) Stmt
 
-Print -> "print" "(" Expr ")" ";"
+For -> for ( ForInit ; BoolExpr ; AssignNoSemi ) Stmt
+ForInit -> let id = BoolExpr | var id = BoolExpr | id = BoolExpr
 
-Block -> "{" StmtList "}"
+Print -> print ( BoolExpr ) ;
+
+Block -> { StmtList }
+
+BoolExpr -> Expr BoolExprPrime
+BoolExprPrime -> < Expr BoolExprPrime | > Expr BoolExprPrime | == Expr BoolExprPrime | ε
 
 Expr -> Term ExprPrime
-ExprPrime -> "+" Term ExprPrime | ε
+ExprPrime -> + Term ExprPrime | - Term ExprPrime | ε
 
 Term -> Factor TermPrime
-TermPrime -> "*" Factor TermPrime | ε
+TermPrime -> * Factor TermPrime | / Factor TermPrime | ε
 
-Factor -> "(" Expr ")" | id | number
+Factor -> ( BoolExpr ) | id | number
 
 id -> IDENTIFIER
 number -> NUMBER

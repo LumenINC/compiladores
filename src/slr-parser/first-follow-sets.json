@@ -1,0 +1,424 @@
+{
+  "first": {
+    "EOF": [
+      "EOF"
+    ],
+    "ε": [
+      "ε"
+    ],
+    "var": [
+      "var"
+    ],
+    "let": [
+      "let"
+    ],
+    "int": [
+      "int"
+    ],
+    "float": [
+      "float"
+    ],
+    "=": [
+      "="
+    ],
+    ";": [
+      ";"
+    ],
+    "if": [
+      "if"
+    ],
+    "(": [
+      "("
+    ],
+    ")": [
+      ")"
+    ],
+    "else": [
+      "else"
+    ],
+    "while": [
+      "while"
+    ],
+    "for": [
+      "for"
+    ],
+    "print": [
+      "print"
+    ],
+    "{": [
+      "{"
+    ],
+    "}": [
+      "}"
+    ],
+    "<": [
+      "<"
+    ],
+    ">": [
+      ">"
+    ],
+    "==": [
+      "=="
+    ],
+    "+": [
+      "+"
+    ],
+    "-": [
+      "-"
+    ],
+    "*": [
+      "*"
+    ],
+    "/": [
+      "/"
+    ],
+    "IDENTIFIER": [
+      "IDENTIFIER"
+    ],
+    "NUMBER": [
+      "NUMBER"
+    ],
+    "Program'": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER"
+    ],
+    "Program": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER"
+    ],
+    "StmtList": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER"
+    ],
+    "Stmt": [
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER"
+    ],
+    "Decl": [
+      "var",
+      "let",
+      "int",
+      "float"
+    ],
+    "DeclTail": [
+      "=",
+      ";"
+    ],
+    "Assign": [
+      "IDENTIFIER"
+    ],
+    "AssignNoSemi": [
+      "IDENTIFIER"
+    ],
+    "If": [
+      "if"
+    ],
+    "ElseOpt": [
+      "else",
+      "ε"
+    ],
+    "While": [
+      "while"
+    ],
+    "For": [
+      "for"
+    ],
+    "ForInit": [
+      "let",
+      "var",
+      "IDENTIFIER"
+    ],
+    "Print": [
+      "print"
+    ],
+    "Block": [
+      "{"
+    ],
+    "BoolExpr": [
+      "(",
+      "IDENTIFIER",
+      "NUMBER"
+    ],
+    "BoolExprPrime": [
+      "<",
+      ">",
+      "==",
+      "ε"
+    ],
+    "Expr": [
+      "(",
+      "IDENTIFIER",
+      "NUMBER"
+    ],
+    "ExprPrime": [
+      "+",
+      "-",
+      "ε"
+    ],
+    "Term": [
+      "(",
+      "IDENTIFIER",
+      "NUMBER"
+    ],
+    "TermPrime": [
+      "*",
+      "/",
+      "ε"
+    ],
+    "Factor": [
+      "(",
+      "IDENTIFIER",
+      "NUMBER"
+    ],
+    "id": [
+      "IDENTIFIER"
+    ],
+    "number": [
+      "NUMBER"
+    ],
+    "epsilon": [
+      "epsilon"
+    ]
+  },
+  "follow": {
+    "Program'": [
+      "$"
+    ],
+    "Program": [
+      "$"
+    ],
+    "StmtList": [
+      "EOF",
+      "}"
+    ],
+    "Stmt": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "Decl": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "DeclTail": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "Assign": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "AssignNoSemi": [
+      ";",
+      ")"
+    ],
+    "If": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "ElseOpt": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "While": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "For": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "ForInit": [
+      ";"
+    ],
+    "Print": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "Block": [
+      "ε",
+      "var",
+      "let",
+      "int",
+      "float",
+      "if",
+      "while",
+      "for",
+      "print",
+      "{",
+      "IDENTIFIER",
+      "else"
+    ],
+    "BoolExpr": [
+      ";",
+      ")"
+    ],
+    "BoolExprPrime": [
+      ";",
+      ")"
+    ],
+    "Expr": [
+      "<",
+      ">",
+      "==",
+      "ε"
+    ],
+    "ExprPrime": [
+      "<",
+      ">",
+      "==",
+      "ε"
+    ],
+    "Term": [
+      "+",
+      "-",
+      "ε"
+    ],
+    "TermPrime": [
+      "+",
+      "-",
+      "ε"
+    ],
+    "Factor": [
+      "*",
+      "/",
+      "ε"
+    ],
+    "id": [
+      "=",
+      ";",
+      "*",
+      "/",
+      "ε"
+    ],
+    "number": [
+      "*",
+      "/",
+      "ε"
+    ]
+  }
+}
