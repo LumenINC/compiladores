@@ -1,0 +1,1028 @@
+{
+  "type": "Program",
+  "children": [
+    {
+      "type": "StmtList",
+      "children": [
+        {
+          "type": "Stmt",
+          "children": [
+            {
+              "type": "Decl",
+              "children": [
+                {
+                  "type": "KEYWORD",
+                  "value": "let",
+                  "line": 3,
+                  "column": 1
+                },
+                {
+                  "type": "id",
+                  "children": [
+                    {
+                      "type": "IDENTIFIER",
+                      "value": "x",
+                      "line": 3,
+                      "column": 5
+                    }
+                  ]
+                },
+                {
+                  "type": "DeclTail",
+                  "children": [
+                    {
+                      "type": "OPERATOR",
+                      "value": "=",
+                      "line": 3,
+                      "column": 7
+                    },
+                    {
+                      "type": "BoolExpr",
+                      "children": [
+                        {
+                          "type": "Expr",
+                          "children": [
+                            {
+                              "type": "Term",
+                              "children": [
+                                {
+                                  "type": "Factor",
+                                  "children": [
+                                    {
+                                      "type": "number",
+                                      "children": [
+                                        {
+                                          "type": "NUMBER",
+                                          "value": "10",
+                                          "line": 3,
+                                          "column": 9
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "TermPrime",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ExprPrime",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BoolExprPrime",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "DELIMITER",
+                      "value": ";",
+                      "line": 3,
+                      "column": 11
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "StmtList",
+          "children": [
+            {
+              "type": "Stmt",
+              "children": [
+                {
+                  "type": "Decl",
+                  "children": [
+                    {
+                      "type": "KEYWORD",
+                      "value": "let",
+                      "line": 4,
+                      "column": 1
+                    },
+                    {
+                      "type": "id",
+                      "children": [
+                        {
+                          "type": "IDENTIFIER",
+                          "value": "y",
+                          "line": 4,
+                          "column": 5
+                        }
+                      ]
+                    },
+                    {
+                      "type": "DeclTail",
+                      "children": [
+                        {
+                          "type": "OPERATOR",
+                          "value": "=",
+                          "line": 4,
+                          "column": 7
+                        },
+                        {
+                          "type": "BoolExpr",
+                          "children": [
+                            {
+                              "type": "Expr",
+                              "children": [
+                                {
+                                  "type": "Term",
+                                  "children": [
+                                    {
+                                      "type": "Factor",
+                                      "children": [
+                                        {
+                                          "type": "DELIMITER",
+                                          "value": "(",
+                                          "line": 4,
+                                          "column": 9
+                                        },
+                                        {
+                                          "type": "BoolExpr",
+                                          "children": [
+                                            {
+                                              "type": "Expr",
+                                              "children": [
+                                                {
+                                                  "type": "Term",
+                                                  "children": [
+                                                    {
+                                                      "type": "Factor",
+                                                      "children": [
+                                                        {
+                                                          "type": "number",
+                                                          "children": [
+                                                            {
+                                                              "type": "NUMBER",
+                                                              "value": "5",
+                                                              "line": 4,
+                                                              "column": 10
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "TermPrime",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "ExprPrime",
+                                                  "children": [
+                                                    {
+                                                      "type": "OPERATOR",
+                                                      "value": "+",
+                                                      "line": 4,
+                                                      "column": 12
+                                                    },
+                                                    {
+                                                      "type": "Term",
+                                                      "children": [
+                                                        {
+                                                          "type": "Factor",
+                                                          "children": [
+                                                            {
+                                                              "type": "number",
+                                                              "children": [
+                                                                {
+                                                                  "type": "NUMBER",
+                                                                  "value": "5",
+                                                                  "line": 4,
+                                                                  "column": 14
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "TermPrime",
+                                                          "children": []
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "ExprPrime",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "BoolExprPrime",
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "DELIMITER",
+                                          "value": ")",
+                                          "line": 4,
+                                          "column": 15
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "TermPrime",
+                                      "children": [
+                                        {
+                                          "type": "OPERATOR",
+                                          "value": "*",
+                                          "line": 4,
+                                          "column": 17
+                                        },
+                                        {
+                                          "type": "Factor",
+                                          "children": [
+                                            {
+                                              "type": "number",
+                                              "children": [
+                                                {
+                                                  "type": "NUMBER",
+                                                  "value": "2",
+                                                  "line": 4,
+                                                  "column": 19
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "TermPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "ExprPrime",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "BoolExprPrime",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "DELIMITER",
+                          "value": ";",
+                          "line": 4,
+                          "column": 20
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "StmtList",
+              "children": [
+                {
+                  "type": "Stmt",
+                  "children": [
+                    {
+                      "type": "For",
+                      "children": [
+                        {
+                          "type": "KEYWORD",
+                          "value": "for",
+                          "line": 7,
+                          "column": 1
+                        },
+                        {
+                          "type": "DELIMITER",
+                          "value": "(",
+                          "line": 7,
+                          "column": 5
+                        },
+                        {
+                          "type": "ForInit",
+                          "children": [
+                            {
+                              "type": "KEYWORD",
+                              "value": "let",
+                              "line": 7,
+                              "column": 6
+                            },
+                            {
+                              "type": "id",
+                              "children": [
+                                {
+                                  "type": "IDENTIFIER",
+                                  "value": "i",
+                                  "line": 7,
+                                  "column": 10
+                                }
+                              ]
+                            },
+                            {
+                              "type": "OPERATOR",
+                              "value": "=",
+                              "line": 7,
+                              "column": 12
+                            },
+                            {
+                              "type": "BoolExpr",
+                              "children": [
+                                {
+                                  "type": "Expr",
+                                  "children": [
+                                    {
+                                      "type": "Term",
+                                      "children": [
+                                        {
+                                          "type": "Factor",
+                                          "children": [
+                                            {
+                                              "type": "number",
+                                              "children": [
+                                                {
+                                                  "type": "NUMBER",
+                                                  "value": "0",
+                                                  "line": 7,
+                                                  "column": 14
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "TermPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "ExprPrime",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "BoolExprPrime",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "DELIMITER",
+                          "value": ";",
+                          "line": 7,
+                          "column": 15
+                        },
+                        {
+                          "type": "BoolExpr",
+                          "children": [
+                            {
+                              "type": "Expr",
+                              "children": [
+                                {
+                                  "type": "Term",
+                                  "children": [
+                                    {
+                                      "type": "Factor",
+                                      "children": [
+                                        {
+                                          "type": "id",
+                                          "children": [
+                                            {
+                                              "type": "IDENTIFIER",
+                                              "value": "i",
+                                              "line": 7,
+                                              "column": 17
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "TermPrime",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "ExprPrime",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "BoolExprPrime",
+                              "children": [
+                                {
+                                  "type": "OPERATOR",
+                                  "value": "<",
+                                  "line": 7,
+                                  "column": 19
+                                },
+                                {
+                                  "type": "Expr",
+                                  "children": [
+                                    {
+                                      "type": "Term",
+                                      "children": [
+                                        {
+                                          "type": "Factor",
+                                          "children": [
+                                            {
+                                              "type": "number",
+                                              "children": [
+                                                {
+                                                  "type": "NUMBER",
+                                                  "value": "5",
+                                                  "line": 7,
+                                                  "column": 21
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "TermPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "ExprPrime",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "BoolExprPrime",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "DELIMITER",
+                          "value": ";",
+                          "line": 7,
+                          "column": 22
+                        },
+                        {
+                          "type": "AssignNoSemi",
+                          "children": [
+                            {
+                              "type": "id",
+                              "children": [
+                                {
+                                  "type": "IDENTIFIER",
+                                  "value": "i",
+                                  "line": 7,
+                                  "column": 24
+                                }
+                              ]
+                            },
+                            {
+                              "type": "OPERATOR",
+                              "value": "=",
+                              "line": 7,
+                              "column": 26
+                            },
+                            {
+                              "type": "BoolExpr",
+                              "children": [
+                                {
+                                  "type": "Expr",
+                                  "children": [
+                                    {
+                                      "type": "Term",
+                                      "children": [
+                                        {
+                                          "type": "Factor",
+                                          "children": [
+                                            {
+                                              "type": "id",
+                                              "children": [
+                                                {
+                                                  "type": "IDENTIFIER",
+                                                  "value": "i",
+                                                  "line": 7,
+                                                  "column": 28
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "TermPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "ExprPrime",
+                                      "children": [
+                                        {
+                                          "type": "OPERATOR",
+                                          "value": "+",
+                                          "line": 7,
+                                          "column": 30
+                                        },
+                                        {
+                                          "type": "Term",
+                                          "children": [
+                                            {
+                                              "type": "Factor",
+                                              "children": [
+                                                {
+                                                  "type": "number",
+                                                  "children": [
+                                                    {
+                                                      "type": "NUMBER",
+                                                      "value": "1",
+                                                      "line": 7,
+                                                      "column": 32
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "TermPrime",
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "ExprPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "BoolExprPrime",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "DELIMITER",
+                          "value": ")",
+                          "line": 7,
+                          "column": 33
+                        },
+                        {
+                          "type": "Stmt",
+                          "children": [
+                            {
+                              "type": "Block",
+                              "children": [
+                                {
+                                  "type": "DELIMITER",
+                                  "value": "{",
+                                  "line": 7,
+                                  "column": 35
+                                },
+                                {
+                                  "type": "StmtList",
+                                  "children": [
+                                    {
+                                      "type": "Stmt",
+                                      "children": [
+                                        {
+                                          "type": "Assign",
+                                          "children": [
+                                            {
+                                              "type": "AssignNoSemi",
+                                              "children": [
+                                                {
+                                                  "type": "id",
+                                                  "children": [
+                                                    {
+                                                      "type": "IDENTIFIER",
+                                                      "value": "x",
+                                                      "line": 8,
+                                                      "column": 5
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "OPERATOR",
+                                                  "value": "=",
+                                                  "line": 8,
+                                                  "column": 7
+                                                },
+                                                {
+                                                  "type": "BoolExpr",
+                                                  "children": [
+                                                    {
+                                                      "type": "Expr",
+                                                      "children": [
+                                                        {
+                                                          "type": "Term",
+                                                          "children": [
+                                                            {
+                                                              "type": "Factor",
+                                                              "children": [
+                                                                {
+                                                                  "type": "id",
+                                                                  "children": [
+                                                                    {
+                                                                      "type": "IDENTIFIER",
+                                                                      "value": "x",
+                                                                      "line": 8,
+                                                                      "column": 9
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "type": "TermPrime",
+                                                              "children": []
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "ExprPrime",
+                                                          "children": [
+                                                            {
+                                                              "type": "OPERATOR",
+                                                              "value": "+",
+                                                              "line": 8,
+                                                              "column": 11
+                                                            },
+                                                            {
+                                                              "type": "Term",
+                                                              "children": [
+                                                                {
+                                                                  "type": "Factor",
+                                                                  "children": [
+                                                                    {
+                                                                      "type": "id",
+                                                                      "children": [
+                                                                        {
+                                                                          "type": "IDENTIFIER",
+                                                                          "value": "i",
+                                                                          "line": 8,
+                                                                          "column": 13
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "type": "TermPrime",
+                                                                  "children": []
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "type": "ExprPrime",
+                                                              "children": []
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "BoolExprPrime",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DELIMITER",
+                                              "value": ";",
+                                              "line": 8,
+                                              "column": 14
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "StmtList",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "DELIMITER",
+                                  "value": "}",
+                                  "line": 9,
+                                  "column": 1
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "StmtList",
+                  "children": [
+                    {
+                      "type": "Stmt",
+                      "children": [
+                        {
+                          "type": "While",
+                          "children": [
+                            {
+                              "type": "KEYWORD",
+                              "value": "while",
+                              "line": 12,
+                              "column": 1
+                            },
+                            {
+                              "type": "DELIMITER",
+                              "value": "(",
+                              "line": 12,
+                              "column": 7
+                            },
+                            {
+                              "type": "BoolExpr",
+                              "children": [
+                                {
+                                  "type": "Expr",
+                                  "children": [
+                                    {
+                                      "type": "Term",
+                                      "children": [
+                                        {
+                                          "type": "Factor",
+                                          "children": [
+                                            {
+                                              "type": "id",
+                                              "children": [
+                                                {
+                                                  "type": "IDENTIFIER",
+                                                  "value": "y",
+                                                  "line": 12,
+                                                  "column": 8
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "TermPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "ExprPrime",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "BoolExprPrime",
+                                  "children": [
+                                    {
+                                      "type": "OPERATOR",
+                                      "value": ">",
+                                      "line": 12,
+                                      "column": 10
+                                    },
+                                    {
+                                      "type": "Expr",
+                                      "children": [
+                                        {
+                                          "type": "Term",
+                                          "children": [
+                                            {
+                                              "type": "Factor",
+                                              "children": [
+                                                {
+                                                  "type": "number",
+                                                  "children": [
+                                                    {
+                                                      "type": "NUMBER",
+                                                      "value": "15",
+                                                      "line": 12,
+                                                      "column": 12
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "TermPrime",
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "ExprPrime",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "BoolExprPrime",
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "DELIMITER",
+                              "value": ")",
+                              "line": 12,
+                              "column": 14
+                            },
+                            {
+                              "type": "Stmt",
+                              "children": [
+                                {
+                                  "type": "Block",
+                                  "children": [
+                                    {
+                                      "type": "DELIMITER",
+                                      "value": "{",
+                                      "line": 12,
+                                      "column": 15
+                                    },
+                                    {
+                                      "type": "StmtList",
+                                      "children": [
+                                        {
+                                          "type": "Stmt",
+                                          "children": [
+                                            {
+                                              "type": "Assign",
+                                              "children": [
+                                                {
+                                                  "type": "AssignNoSemi",
+                                                  "children": [
+                                                    {
+                                                      "type": "id",
+                                                      "children": [
+                                                        {
+                                                          "type": "IDENTIFIER",
+                                                          "value": "y",
+                                                          "line": 13,
+                                                          "column": 5
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "OPERATOR",
+                                                      "value": "=",
+                                                      "line": 13,
+                                                      "column": 7
+                                                    },
+                                                    {
+                                                      "type": "BoolExpr",
+                                                      "children": [
+                                                        {
+                                                          "type": "Expr",
+                                                          "children": [
+                                                            {
+                                                              "type": "Term",
+                                                              "children": [
+                                                                {
+                                                                  "type": "Factor",
+                                                                  "children": [
+                                                                    {
+                                                                      "type": "id",
+                                                                      "children": [
+                                                                        {
+                                                                          "type": "IDENTIFIER",
+                                                                          "value": "y",
+                                                                          "line": 13,
+                                                                          "column": 9
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "type": "TermPrime",
+                                                                  "children": []
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "type": "ExprPrime",
+                                                              "children": [
+                                                                {
+                                                                  "type": "OPERATOR",
+                                                                  "value": "-",
+                                                                  "line": 13,
+                                                                  "column": 11
+                                                                },
+                                                                {
+                                                                  "type": "Term",
+                                                                  "children": [
+                                                                    {
+                                                                      "type": "Factor",
+                                                                      "children": [
+                                                                        {
+                                                                          "type": "number",
+                                                                          "children": [
+                                                                            {
+                                                                              "type": "NUMBER",
+                                                                              "value": "1",
+                                                                              "line": 13,
+                                                                              "column": 13
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "type": "TermPrime",
+                                                                      "children": []
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "type": "ExprPrime",
+                                                                  "children": []
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "BoolExprPrime",
+                                                          "children": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DELIMITER",
+                                                  "value": ";",
+                                                  "line": 13,
+                                                  "column": 14
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "StmtList",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DELIMITER",
+                                      "value": "}",
+                                      "line": 14,
+                                      "column": 1
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "StmtList",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "EOF",
+      "value": "EOF",
+      "line": 0,
+      "column": 0
+    }
+  ]
+}

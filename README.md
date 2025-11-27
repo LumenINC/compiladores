@@ -1,13 +1,14 @@
 # Compilador JS com Analisador Léxico e Sintático SLR(1)
 
-Este projeto é um compilador simples construído em JavaScript que demonstra os processos de análise léxica e sintática. Ele utiliza um analisador léxico para tokenizar o código-fonte e um analisador sintático SLR(1) para construir uma árvore de análise (parse tree).
+Este projeto é um compilador didático construído em JavaScript que demonstra os processos de análise léxica e sintática. Ele utiliza um analisador léxico para tokenizar o código-fonte, um analisador sintático SLR(1) para construir uma árvore de análise (parse tree), e um visualizador para gerar um relatório HTML completo.
 
 ## Funcionalidades
 
 - **Analisador Léxico**: Converte o código-fonte em uma sequência de tokens.
-- **Analisador Sintático SLR(1)**: Verifica se a sequência de tokens corresponde à gramática definida e constrói uma árvore de análise.
+- **Analisador Sintático LL(1) e SLR(1)**: Valida o código com base em duas abordagens de parsing.
 - **Geração de Tabela SLR(1)**: Gera dinamicamente as tabelas ACTION e GOTO a partir de uma gramática especificada.
-- **Detecção de Erros**: Identifica e reporta erros léxicos e sintáticos.
+- **Geração de Árvore Sintática**: O parser SLR produz uma árvore de análise detalhada em formato JSON.
+- **Visualizador HTML**: Gera um relatório (`relatorio_compilador.html`) com a visualização da árvore sintática, conjuntos FIRST/FOLLOW e as tabelas de parsing LL(1) e SLR.
 
 ## Como Apresentar o Projeto
 
@@ -25,78 +26,83 @@ npm install
 
 Mostre o arquivo `docs/gramatica.txt`. Explique que esta é a gramática que define a estrutura da linguagem que o compilador aceita. Destaque algumas regras, como a definição de declarações (`Decl`), expressões (`Expr`) e estruturas de controle (`If`, `While`).
 
-### Passo 3: Gerar as Tabelas de Análise
+### Geração das Tabelas de Análise (Parsing)
 
-Execute o script para construir as tabelas SLR(1) a partir da gramática. Este comando irá ler `docs/gramatica.txt`, gerar os itens LR(0), os conjuntos FIRST e FOLLOW, e finalmente a tabela de análise SLR(1), salvando-a em `src/slr-parser/slr-table.json`.
+Para gerar as tabelas de análise LL(1) e SLR, execute os seguintes comandos na raiz do projeto:
 
-```bash
-node src/slr-parser/build-slr-table.js
-```
+- **Tabela LL(1):**
+  ```bash
+  node src/grammar-converter/build_table.js
+  ```
 
-- **O que mostrar**: Abra o `slr-table.json` gerado e explique brevemente o que são as tabelas `action` e `goto` e como elas guiam o analisador.
+- **Tabela SLR:**
+  ```bash
+  node src/slr-parser/build-slr-table.js
+  ```
 
-### Passo 4: Analisar o Código de Exemplo
+### Passo 4: Analisar o Código e Gerar a Árvore
 
-Execute o `main.js` para processar o código de exemplo localizado em `src/sample_code.js`.
+Execute o `main.js` para processar o código de exemplo (`src/sample_code.js`). Este script realiza a análise léxica e sintática (LL(1) e SLR) e salva a árvore de análise gerada pelo SLR em `parse_tree.json`.
 
 ```bash
 node src/main.js
 ```
 
-Este comando fará duas coisas:
-1.  **Análise Léxica**: O `lexer.js` irá tokenizar o `sample_code.js`. O resultado (uma lista de tokens) será impresso no console.
-2.  **Análise Sintática**: O `slr-parser.js` usará a tabela SLR gerada para analisar os tokens. Se for bem-sucedido, ele imprimirá a árvore de análise (Parse Tree).
+- **O que mostrar**: Analise a saída no console. Mostre a lista de tokens, a validação LL(1) e a confirmação de que a árvore SLR foi salva.
 
-- **O que mostrar**: Analise a saída no console. Primeiro, mostre a lista de tokens e explique como o código foi dividido em unidades lógicas. Em seguida, mostre a árvore de análise e explique como ela representa a estrutura hierárquica do código-fonte.
+### Passo 5: Gerar e Apresentar o Relatório Visual
 
-### Passo 5: Demonstração de Erros
+Execute o `visualizer.js` para gerar o relatório HTML completo.
 
-Para mostrar a capacidade de detecção de erros do compilador, você pode introduzir erros intencionalmente no arquivo `src/sample_code.js`.
+```bash
+node src/visualizer.js
+```
+
+Este comando criará o arquivo `relatorio_compilador.html` na raiz do projeto. Abra este arquivo em um navegador.
+
+- **O que mostrar no relatório**:
+    1.  **Conjuntos FIRST e FOLLOW**: Explique como esses conjuntos são usados para construir as tabelas de parsing.
+    2.  **Árvore Sintática**: Mostre a representação gráfica do código analisado. Destaque como a estrutura da árvore corresponde ao código-fonte.
+    3.  **Tabelas de Parsing LL(1) e SLR**: Compare as duas tabelas e explique brevemente como elas guiam os respectivos analisadores.
+
+### Passo 6: Demonstração de Erros
+
+Para mostrar a capacidade de detecção de erros, introduza erros intencionalmente no arquivo `src/sample_code.js` e execute `node src/main.js` novamente.
 
 #### Forçando um Erro Léxico
 
-Adicione um caractere inválido ao código, como um `@` ou `#`.
-
-**Exemplo em `src/sample_code.js`:**
+Adicione um caractere inválido, como `@`.
 
 ```javascript
-let x = 10;
 let y = x @ 5; // Erro aqui
 ```
 
-Execute `node src/main.js` novamente. O analisador léxico irá falhar e reportar um `LexerError`, indicando o token inválido.
+**Resultado**: O `main.js` irá falhar com um `LexerError`, indicando o token inválido.
 
 #### Forçando um Erro Sintático
 
-Modifique o código para que ele viole as regras da gramática. Por exemplo, remova um ponto e vírgula ou escreva uma estrutura de controle de forma incorreta.
+Remova um ponto e vírgula.
 
-**Exemplo 1: Ponto e vírgula faltando**
 ```javascript
 let x = 10 // Erro aqui, falta ';'
 ```
 
-**Exemplo 2: Estrutura `if` inválida**
-```javascript
-if (x > 5) then { // 'then' não faz parte da gramática
-  y = 1;
-}
-```
-
-Execute `node src/main.js`. Desta vez, a análise léxica será bem-sucedida, mas a análise sintática falhará, reportando um `Syntax Error` com o token inesperado e o estado em que o erro ocorreu.
+**Resultado**: O `main.js` reportará um `Syntax Error` do parser SLR, indicando o token inesperado e o estado do erro.
 
 ## Estrutura do Projeto
 
 ```
 /src
-|-- /grammar-converter  # Ferramentas para manipulação de gramática (não utilizadas no fluxo principal do SLR)
 |-- /slr-parser         # Lógica do analisador SLR(1)
 |   |-- build-slr-table.js  # Script para construir a tabela SLR
 |   |-- slr-parser.js       # O analisador sintático SLR
 |   |-- slr-table.json      # Tabela SLR gerada
-|   |-- ...
 |-- lexer.js            # Analisador Léxico
-|-- main.js             # Ponto de entrada principal que integra o lexer e o parser
+|-- main.js             # Ponto de entrada que integra lexer e parsers
+|-- visualizer.js       # Gerador do relatório HTML
 |-- sample_code.js      # Código de exemplo para ser analisado
 /docs
 |-- gramatica.txt       # A gramática da linguagem
+/relatorio_compilador.html # Relatório visual gerado
+/parse_tree.json        # Saída da árvore de análise em JSON
 ```
